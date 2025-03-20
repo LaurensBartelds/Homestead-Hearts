@@ -1,2 +1,7 @@
-module $MODULE_NAME$ {
+module Homestead.Hearts {
+    requires hanyaeger;
+
+    exports org.example;
+
+    //opens tiles;
 }
