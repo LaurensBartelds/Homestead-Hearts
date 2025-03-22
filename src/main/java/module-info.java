@@ -1,7 +1,7 @@
 module Homestead.Hearts {
     requires hanyaeger;
 
-    exports org.example;
+    exports org.homesteadhearts;
 
     //opens tiles;
 }

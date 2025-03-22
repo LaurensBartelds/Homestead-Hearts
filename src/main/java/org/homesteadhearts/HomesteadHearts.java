@@ -1,11 +1,7 @@
-package org.example;
+package org.homesteadhearts;
 
 import com.github.hanyaeger.api.YaegerGame;
 
-/**
- * Hello world!
- *
- */
 public class HomesteadHearts extends YaegerGame
 {
     public static void main( String[] args ) {
