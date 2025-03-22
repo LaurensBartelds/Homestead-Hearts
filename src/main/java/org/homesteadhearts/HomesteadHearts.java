@@ -15,6 +15,7 @@ public class HomesteadHearts extends YaegerGame
 
     @Override
     public void setupScenes() {
+        addScene();
     }
 }
 
