@@ -1,6 +1,7 @@
 package org.homesteadhearts;
 
 import com.github.hanyaeger.api.YaegerGame;
+import org.homesteadhearts.scenes.TitleScene;
 
 public class HomesteadHearts extends YaegerGame
 {
@@ -15,7 +16,7 @@ public class HomesteadHearts extends YaegerGame
 
     @Override
     public void setupScenes() {
-        addScene();
+        addScene(0, new TitleScene(this));
     }
 }
 
