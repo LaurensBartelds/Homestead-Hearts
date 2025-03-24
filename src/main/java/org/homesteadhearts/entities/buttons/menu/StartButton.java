@@ -1,4 +1,4 @@
-package org.homesteadhearts.entities.buttons;
+package org.homesteadhearts.entities.buttons.menu;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;

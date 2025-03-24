@@ -1,26 +1,36 @@
 package org.homesteadhearts.scenes;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.scenes.DynamicScene;
+import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.UpdateExposer;
+import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
+import javafx.scene.paint.Color;
 import org.homesteadhearts.HomesteadHearts;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
 
-public class GameLevel extends DynamicScene {
+public class GameLevel extends ScrollableDynamicScene implements UpdateExposer {
 
-    private final HomesteadHearts homestead;
+    private Bunny bunny;
 
     public GameLevel(HomesteadHearts homestead) {
-        this.homestead = homestead;
     }
 
     @Override
     public void setupScene() {
-        // Configure your scene here (background, etc.)
+        setBackgroundColor(Color.WHITE);
+        setSize(new Size(2000, 2000));
+        setRelativeScrollPosition(0.5, 0.5);
     }
 
     @Override
     public void setupEntities() {
-        Bunny bunny = new Bunny(new Coordinate2D(300, 300));
+        bunny = new Bunny(new Coordinate2D(1000, 1000));
         addEntity(bunny);
+    }
+
+    @Override
+    public void explicitUpdate(final long timestamp) {
+        var bunnyLocation = bunny.getAnchorLocation();
+        setScrollPosition(bunnyLocation);
     }
 }

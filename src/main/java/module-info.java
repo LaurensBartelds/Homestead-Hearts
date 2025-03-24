@@ -3,7 +3,7 @@ module Homestead.Hearts {
 
     exports org.homesteadhearts;
     exports org.homesteadhearts.scenes;
-    exports org.homesteadhearts.entities.buttons;
+    exports org.homesteadhearts.entities.buttons.menu;
 
     opens sprites.animals;
 }

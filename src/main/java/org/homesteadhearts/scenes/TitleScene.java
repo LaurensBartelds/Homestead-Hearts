@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
 import javafx.scene.paint.Color;
 import org.homesteadhearts.HomesteadHearts;
-import org.homesteadhearts.entities.buttons.StartButton;
+import org.homesteadhearts.entities.buttons.menu.StartButton;
 
 
 public class TitleScene extends StaticScene {
