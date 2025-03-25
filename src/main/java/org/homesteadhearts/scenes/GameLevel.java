@@ -7,11 +7,12 @@ import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
 import javafx.scene.paint.Color;
 import org.homesteadhearts.HomesteadHearts;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
+import org.homesteadhearts.entities.crops.carrot.Carrot;
 
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer {
 
     private Bunny bunny;
-
+    private Carrot carrot;
     public GameLevel(HomesteadHearts homestead) {
     }
 
@@ -26,6 +27,8 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer {
     public void setupEntities() {
         bunny = new Bunny(new Coordinate2D(1000, 1000));
         addEntity(bunny);
+        carrot = new Carrot(new Coordinate2D(500, 500));
+        addEntity(carrot);
     }
 
     @Override

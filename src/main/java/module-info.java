@@ -6,4 +6,5 @@ module Homestead.Hearts {
     exports org.homesteadhearts.entities.buttons.menu;
 
     opens sprites.animals;
+    opens sprites.farming;
 }
