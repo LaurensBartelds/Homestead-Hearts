@@ -1,11 +1,12 @@
 module Homestead.Hearts {
-    requires hanyaeger;
+        requires hanyaeger;
 
-    exports org.homesteadhearts;
-    exports org.homesteadhearts.scenes;
-    exports org.homesteadhearts.entities.buttons.menu;
+        exports org.homesteadhearts;
+        exports org.homesteadhearts.scenes;
+        exports org.homesteadhearts.entities.buttons.menu;
 
-    opens sprites.animals;
-    opens sprites.tiles;
-    opens sprites.farming;
-}
+        opens sprites.animals;
+        opens sprites.tiles;
+        opens sprites.farming;
+        opens sprites.avatar;
+        }

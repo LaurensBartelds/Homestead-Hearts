@@ -34,6 +34,10 @@ public class BunnySprite extends DynamicSpriteEntity implements KeyListener {
             setMotion(3, 0d);
             setAutoCycleRow(0);
             setAutoCycle(125);
+        } else if (pressedKeys.isEmpty()) {
+            setMotion(0, 0);
+            setAutoCycleRow(4);
+            setAutoCycle(500);
         }
     }
 }

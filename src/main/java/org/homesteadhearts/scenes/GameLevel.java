@@ -7,11 +7,15 @@ import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
+import org.homesteadhearts.entities.people.player.Player;
+import org.homesteadhearts.maps.GameLevelMap;
 import org.homesteadhearts.entities.crops.carrot.Carrot;
 
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer {
 
     private Bunny bunny;
+    private Carrot carrot;
+    private Player player;
 
     public GameLevel() {
     }
@@ -30,6 +34,9 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
         Carrot carrot = new Carrot(new Coordinate2D(1000, 1000));
         addEntity(carrot);
+
+        player = new Player(new Coordinate2D(1000,1000));
+        addEntity(player);
     }
 
     @Override

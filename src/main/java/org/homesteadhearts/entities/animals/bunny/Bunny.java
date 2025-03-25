@@ -21,4 +21,6 @@ public class Bunny extends DynamicCompositeEntity implements SceneBorderCrossing
     public void notifyBoundaryCrossing(SceneBorder border) {
         setAnchorLocationX(0);
     }
+
+
 }
