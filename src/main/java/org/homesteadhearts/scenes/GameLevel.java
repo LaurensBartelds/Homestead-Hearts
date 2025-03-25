@@ -4,11 +4,13 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
+import com.github.hanyaeger.api.scenes.TileMapContainer;
 import javafx.scene.paint.Color;
 import org.homesteadhearts.HomesteadHearts;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
+import org.homesteadhearts.maps.GameLevelMap;
 
-public class GameLevel extends ScrollableDynamicScene implements UpdateExposer {
+public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer {
 
     private Bunny bunny;
 
@@ -32,5 +34,9 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer {
     public void explicitUpdate(final long timestamp) {
         var bunnyLocation = bunny.getAnchorLocation();
         setScrollPosition(bunnyLocation);
+    }
+
+    public void setupTileMaps(){
+        addTileMap(new GameLevelMap());
     }
 }
