@@ -7,15 +7,13 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 
 public class Bunny extends DynamicCompositeEntity implements SceneBorderCrossingWatcher {
 
-    private BunnySprite bunnySprite;
-
     public Bunny(Coordinate2D location) {
         super(location);
     }
 
     @Override
     protected void setupEntities() {
-        bunnySprite = new BunnySprite(new Coordinate2D(0, 0));
+        BunnySprite bunnySprite = new BunnySprite(new Coordinate2D(0, 0));
         addEntity(bunnySprite);
     }
 

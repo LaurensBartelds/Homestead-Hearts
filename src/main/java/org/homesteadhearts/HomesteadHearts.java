@@ -18,6 +18,6 @@ public class HomesteadHearts extends YaegerGame {
     @Override
     public void setupScenes() {
         addScene(0, new TitleScene(this)); // Add the TitleScene to the game
-        addScene(1, new GameLevel(this)); // Add the GameLevel to the game
+        addScene(1, new GameLevel()); // Add the GameLevel to the game
     }
 }

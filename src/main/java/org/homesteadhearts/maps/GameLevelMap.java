@@ -2,9 +2,6 @@ package org.homesteadhearts.maps;
 
 import com.github.hanyaeger.api.scenes.TileMap;
 import org.homesteadhearts.maps.tiles.ground.Ground1;
-import org.homesteadhearts.maps.tiles.ground.Ground2;
-import org.homesteadhearts.maps.tiles.ground.Ground3;
-import org.homesteadhearts.maps.tiles.ground.Ground4;
 
 
 public class GameLevelMap extends TileMap {
@@ -15,7 +12,6 @@ public class GameLevelMap extends TileMap {
 
     @Override
     public void setupEntities() {
-        // Map each tile ID to a specific ground class
         addEntity(1, Ground1.class, "sprites/tiles/tiles.png");
     }
 
