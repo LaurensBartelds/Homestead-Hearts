@@ -7,8 +7,7 @@ public class Wheat extends DynamicCompositeEntity {
     private WheatSprite wheatSprite;
 
     public Wheat (Coordinate2D location) {
-//      super(location);
-        super();
+        super(location);
     }
 
     @Override
