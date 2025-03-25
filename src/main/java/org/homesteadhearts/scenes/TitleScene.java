@@ -19,7 +19,7 @@ public class TitleScene extends StaticScene {
     }
 
     public void setupScene() {
-        setBackgroundColor(Color.BLACK);
+        setBackgroundImage("Sprites/background/backgroundStartScreen.png");
     }
 
     public void setupEntities() {
