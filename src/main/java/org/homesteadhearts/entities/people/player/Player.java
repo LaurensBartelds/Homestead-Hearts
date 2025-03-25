@@ -19,6 +19,9 @@ public class Player extends DynamicCompositeEntity implements SceneBorderCrossin
     protected void setupEntities() {
         playerSprite = new PlayerSprite(new Coordinate2D(0, 0));
         addEntity(playerSprite);
+
+        PlayerHitbox playerHitbox = new PlayerHitbox(new Coordinate2D(0, 0));
+        addEntity(playerHitbox);
     }
 
     @Override
