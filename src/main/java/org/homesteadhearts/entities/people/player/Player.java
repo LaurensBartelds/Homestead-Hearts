@@ -7,8 +7,6 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 
 
 public class Player extends DynamicCompositeEntity implements SceneBorderCrossingWatcher {
-    private PlayerSprite playerSprite;
-
 
     public Player(Coordinate2D initialLocation) {
         super(initialLocation);
@@ -17,10 +15,10 @@ public class Player extends DynamicCompositeEntity implements SceneBorderCrossin
 
     @Override
     protected void setupEntities() {
-        playerSprite = new PlayerSprite(new Coordinate2D(0, 0));
+        PlayerSprite playerSprite = new PlayerSprite(new Coordinate2D(0, 0));
         addEntity(playerSprite);
 
-        PlayerHitbox playerHitbox = new PlayerHitbox(new Coordinate2D(0, 0));
+        PlayerHitbox playerHitbox = new PlayerHitbox(new Coordinate2D(12, 20));
         addEntity(playerHitbox);
     }
 
