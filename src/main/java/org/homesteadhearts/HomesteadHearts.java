@@ -1,10 +1,13 @@
 package org.homesteadhearts;
 
+import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 import org.homesteadhearts.scenes.GameLevel;
 import org.homesteadhearts.scenes.TitleScene;
 
 public class HomesteadHearts extends YaegerGame {
+
+    public static final Size GAME_SIZE = new Size(1024, 698);
 
     public static void main( String[] args ) {
         launch(args);
@@ -13,7 +16,8 @@ public class HomesteadHearts extends YaegerGame {
     @Override
     public void setupGame() {
         setGameTitle("Homestead Hearts");
-    } // Set the title of the game
+        setSize(GAME_SIZE);
+    }
 
     @Override
     public void setupScenes() {

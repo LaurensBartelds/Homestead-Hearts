@@ -13,9 +13,8 @@ import org.homesteadhearts.entities.crops.carrot.Carrot;
 
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer {
 
-    private Bunny bunny;
-    private Carrot carrot;
     private Player player;
+    private Bunny bunny;
 
     public GameLevel() {
     }
@@ -24,7 +23,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
     public void setupScene() {
         setBackgroundColor(Color.WHITE);
         setSize(new Size(2000, 2000));
-        setRelativeScrollPosition(0.5, 0.5);
+        setRelativeScrollPosition(0.1, 0.1);
     }
 
     @Override
@@ -41,9 +40,9 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
     @Override
     public void explicitUpdate(final long timestamp) {
-        // Use player's location instead of bunny's location for scrolling
-        var playerLocation = player.getAnchorLocation();
-        setScrollPosition(playerLocation);
+        // Use bunny's location instead of player's location for scrolling
+        var bunnyLocation = bunny.getAnchorLocation();
+        setScrollPosition(bunnyLocation);
     }
 
     public void setupTileMaps(){

@@ -12,7 +12,6 @@ import java.util.List;
 
 public class Player extends DynamicCompositeEntity implements SceneBorderCrossingWatcher, Collided {
 
-    //private PlayerHitbox playerHitbox;
     private boolean canMove = true;
 
     public Player(Coordinate2D location) {
