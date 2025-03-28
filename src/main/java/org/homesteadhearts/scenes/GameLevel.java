@@ -41,10 +41,12 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
     @Override
     public void explicitUpdate(final long timestamp) {
-        var bunnyLocation = bunny.getAnchorLocation();
-        setScrollPosition(bunnyLocation);
+        // Use player's location instead of bunny's location for scrolling
+        var playerLocation = player.getAnchorLocation();
+        setScrollPosition(playerLocation);
     }
 
     public void setupTileMaps(){
+        addTileMap(new GameLevelMap());
     }
 }
