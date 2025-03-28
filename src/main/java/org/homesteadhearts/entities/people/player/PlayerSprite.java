@@ -7,24 +7,29 @@ import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
-import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
 import java.util.Set;
 
 public class PlayerSprite extends DynamicSpriteEntity implements KeyListener, SceneBorderTouchingWatcher, Collider {
 
-    public PlayerSprite(Coordinate2D location) {
+    private final Player player;
+
+    public PlayerSprite(Coordinate2D location, Player player) {
         super("sprites/avatar/player.png", location, new Size(75, 75), 1, 2);
+        this.player = player;
     }
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-//        System.out.println(getAnchorLocation());
+        if (!player.canMove()) {
+            setMotion(0, 0);
+            return;
+        }
+
         if (pressedKeys.contains(KeyCode.A)) {
             setMotion(3, 270d);
             setCurrentFrameIndex(0);
-
         } else if (pressedKeys.contains(KeyCode.D)) {
             setMotion(3, 90d);
             setCurrentFrameIndex(1);
@@ -53,12 +58,9 @@ public class PlayerSprite extends DynamicSpriteEntity implements KeyListener, Sc
                 setAnchorLocationX(-theLeftSide);
                 break;
             case RIGHT:
-
                 break;
-
             default:
                 break;
         }
-
     }
 }

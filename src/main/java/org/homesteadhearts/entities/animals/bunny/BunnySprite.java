@@ -39,5 +39,6 @@ public class BunnySprite extends DynamicSpriteEntity implements KeyListener {
             setAutoCycleRow(4);
             setAutoCycle(500);
         }
+
     }
 }

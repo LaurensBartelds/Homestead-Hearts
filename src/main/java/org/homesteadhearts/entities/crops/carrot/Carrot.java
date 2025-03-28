@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 
 public class Carrot extends DynamicCompositeEntity {
-    private CarrotSprite carrotSprite;
+
 
     public Carrot(Coordinate2D location) {
         super(location);
@@ -13,17 +13,15 @@ public class Carrot extends DynamicCompositeEntity {
 
     @Override
     protected void setupEntities() {
-        carrotSprite = new CarrotSprite(new Coordinate2D(200,100));
+        CarrotSprite carrotSprite = new CarrotSprite(new Coordinate2D(200, 100));
         addEntity(carrotSprite);
+
+        CarrotHitbox carrotHitbox = new CarrotHitbox(new Coordinate2D(222, 105));
+        addEntity(carrotHitbox);
     }
 
-    public void placeCarrot(Coordinate2D location) {
-        carrotSprite = new CarrotSprite(location);
-
-    }
 
 
-    public CarrotSprite getCarrotSprite() {
-        return carrotSprite;
-    }
+
+
 }

@@ -1,5 +1,6 @@
 module Homestead.Hearts {
         requires hanyaeger;
+        requires org.checkerframework.checker.qual;
 
         exports org.homesteadhearts;
         exports org.homesteadhearts.scenes;
