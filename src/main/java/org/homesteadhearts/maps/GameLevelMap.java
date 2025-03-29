@@ -4,63 +4,95 @@ import com.github.hanyaeger.api.scenes.TileMap;
 
 public class GameLevelMap extends TileMap {
 
+    public enum TileType {
+        EMPTY(0),
+        GROUND(1),
+        FLOWERS(2),
+        PATH_GRASS_RIGHT(3),
+        PATH_GRASS_LEFT(4),
+        PATH_TEXTURE_1(5),
+        PATH_TEXTURE_2(6),
+        PATH_TEXTURE_3(7),
+        PATH_GRASS_TOP(8),
+        PATH_GRASS_BOTTOM(9),
+        GRASS_PATH_CORNER_TOP_LEFT(10),
+        GRASS_PATH_CORNER_TOP_RIGHT(11),
+        PATH_GRASS_CORNER_BOTTOM_RIGHT(12),
+        PATH_GRASS_CORNER_BOTTOM_LEFT(13),
+        PATH_GRASS_CORNER_TOP_LEFT(14),
+        PATH_GRASS_CORNER_TOP_RIGHT(15);
+
+        private final int value;
+
+        TileType(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
     public GameLevelMap() {
         super();
     }
 
     @Override
     public void setupEntities() {
-        addEntity(1, Ground.class, "sprites/tiles/individual_tiles/ground-1.png");
-        addEntity(2, Ground.class, "sprites/tiles/individual_tiles/flowers-1.png");
-        addEntity(3, Ground.class, "sprites/tiles/individual_tiles/path-grass-right.png");
-        addEntity(4, Ground.class, "sprites/tiles/individual_tiles/path-grass-left.png");
-        addEntity(5, Ground.class, "sprites/tiles/individual_tiles/path-texture-1.png");
-        addEntity(6, Ground.class, "sprites/tiles/individual_tiles/path-texture-2.png");
-        addEntity(7, Ground.class, "sprites/tiles/individual_tiles/path-texture-3.png");
-        addEntity(8, Ground.class, "sprites/tiles/individual_tiles/path-grass-top.png");
-        addEntity(9, Ground.class, "sprites/tiles/individual_tiles/path-grass-bottom.png");
-        addEntity(10, Ground.class, "sprites/tiles/individual_tiles/grass-path-corner-top-left.png");
-        addEntity(11, Ground.class, "sprites/tiles/individual_tiles/grass-path-corner-top-right.png");
-        addEntity(12, Ground.class, "sprites/tiles/individual_tiles/path-grass-corner-bottom-right.png");
-        addEntity(13, Ground.class, "sprites/tiles/individual_tiles/path-grass-corner-bottom-left.png");
-        addEntity(14, Ground.class, "sprites/tiles/individual_tiles/path-grass-corner-top-left.png");
-        addEntity(15, Ground.class, "sprites/tiles/individual_tiles/path-grass-corner-top-right.png");
+        addEntity(TileType.GROUND.getValue(), Ground.class, "sprites/tiles/individual_tiles/ground-1.png");
+        addEntity(TileType.FLOWERS.getValue(), Ground.class, "sprites/tiles/individual_tiles/flowers-1.png");
+        addEntity(TileType.PATH_GRASS_RIGHT.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-grass-right.png");
+        addEntity(TileType.PATH_GRASS_LEFT.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-grass-left.png");
+        addEntity(TileType.PATH_TEXTURE_1.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-texture-1.png");
+        addEntity(TileType.PATH_TEXTURE_2.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-texture-2.png");
+        addEntity(TileType.PATH_TEXTURE_3.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-texture-3.png");
+        addEntity(TileType.PATH_GRASS_TOP.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-grass-top.png");
+        addEntity(TileType.PATH_GRASS_BOTTOM.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-grass-bottom.png");
+        addEntity(TileType.GRASS_PATH_CORNER_TOP_LEFT.getValue(), Ground.class, "sprites/tiles/individual_tiles/grass-path-corner-top-left.png");
+        addEntity(TileType.GRASS_PATH_CORNER_TOP_RIGHT.getValue(), Ground.class, "sprites/tiles/individual_tiles/grass-path-corner-top-right.png");
+        addEntity(TileType.PATH_GRASS_CORNER_BOTTOM_RIGHT.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-grass-corner-bottom-right.png");
+        addEntity(TileType.PATH_GRASS_CORNER_BOTTOM_LEFT.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-grass-corner-bottom-left.png");
+        addEntity(TileType.PATH_GRASS_CORNER_TOP_LEFT.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-grass-corner-top-left.png");
+        addEntity(TileType.PATH_GRASS_CORNER_TOP_RIGHT.getValue(), Ground.class, "sprites/tiles/individual_tiles/path-grass-corner-top-right.png");
+    }
 
+    private int[] mapRow(TileType... types) {
+        int[] row = new int[types.length];
+        for (int i = 0; i < types.length; i++) {
+            row[i] = types[i].getValue();
+        }
+        return row;
     }
 
     @Override
-    public int[][] defineMap() {
-        return new int[][]{
-                {2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 8, 8, 8, 8, 8, 8, 8, 10, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 6, 7, 5, 7, 5, 5, 3, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 7, 5, 6, 5, 6, 6, 5, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 7, 5, 6, 5, 5, 6, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 4, 7, 6, 5, 5, 5, 6, 7, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 4, 6, 12, 9, 9, 9, 9, 9, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 6, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 7, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 8, 14, 5, 15, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 10, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 7, 5, 6, 5, 6, 6, 7, 5, 7, 6, 6, 5, 5, 7, 5, 5, 3, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 6, 12, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 10, 8, 8, 8, 8, 8, 8, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 4, 5, 7, 6, 5, 7, 5, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 4, 7, 15, 8, 8, 8, 8, 8, 8, 14, 6, 5, 7, 6, 5, 7, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 4, 5, 5, 6, 5, 7, 5, 5, 7, 5, 7, 5, 7, 5, 6, 7, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 6, 12, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 5, 12, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13, 9, 13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        public int[][] defineMap() {
+            return new int[][]{
+                    mapRow(TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GRASS_PATH_CORNER_TOP_RIGHT, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.GRASS_PATH_CORNER_TOP_LEFT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_3, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_2, TileType.PATH_GRASS_CORNER_BOTTOM_RIGHT, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_2, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_3, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GRASS_PATH_CORNER_TOP_RIGHT, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_CORNER_TOP_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_CORNER_TOP_RIGHT, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.GRASS_PATH_CORNER_TOP_LEFT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_2, TileType.PATH_GRASS_CORNER_BOTTOM_RIGHT, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_CORNER_BOTTOM_LEFT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GRASS_PATH_CORNER_TOP_LEFT, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.GRASS_PATH_CORNER_TOP_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_3, TileType.PATH_GRASS_CORNER_TOP_RIGHT, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_TOP, TileType.PATH_GRASS_CORNER_TOP_LEFT, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.FLOWERS, TileType.FLOWERS, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_3, TileType.PATH_TEXTURE_1, TileType.PATH_TEXTURE_2, TileType.PATH_TEXTURE_3, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_2, TileType.PATH_GRASS_CORNER_BOTTOM_RIGHT, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_BOTTOM, TileType.PATH_GRASS_CORNER_BOTTOM_LEFT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
+                    mapRow(TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.PATH_GRASS_LEFT, TileType.PATH_TEXTURE_1, TileType.PATH_GRASS_RIGHT, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND, TileType.GROUND),
         };
     }
 }
