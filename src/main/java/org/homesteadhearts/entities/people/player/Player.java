@@ -33,6 +33,7 @@ public class Player extends DynamicCompositeEntity implements SceneBorderCrossin
     public void onCollision(List<Collider> collidingObject) {
         for (Collider collider : collidingObject) {
             if (collider instanceof CarrotHitbox) {
+
                 canMove = false;
                 System.out.println("Player collided with carrot");
             }

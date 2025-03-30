@@ -1,8 +1,9 @@
 module Homestead.Hearts {
         requires hanyaeger;
         requires org.checkerframework.checker.qual;
+    requires java.desktop;
 
-        exports org.homesteadhearts;
+    exports org.homesteadhearts;
         exports org.homesteadhearts.scenes;
         exports org.homesteadhearts.entities.buttons.menu;
         exports org.homesteadhearts.maps;

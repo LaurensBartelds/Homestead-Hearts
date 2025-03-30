@@ -43,24 +43,5 @@ public class PlayerSprite extends DynamicSpriteEntity implements KeyListener, Sc
     }
 
     @Override
-    public void notifyBoundaryTouching(SceneBorder border) {
-        setSpeed(0);
-        int theTop = -240;
-        int theLeftSide = 320;
-        switch (border) {
-            case TOP:
-                setAnchorLocationY(theTop);
-                break;
-            case BOTTOM:
-                setAnchorLocationY(getSceneHeight() - getHeight() - 1);
-                break;
-            case LEFT:
-                setAnchorLocationX(-theLeftSide);
-                break;
-            case RIGHT:
-                break;
-            default:
-                break;
-        }
-    }
+    public void notifyBoundaryTouching(SceneBorder border) {}
 }
