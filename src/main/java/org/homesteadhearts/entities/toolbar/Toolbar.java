@@ -1,5 +1,6 @@
 package org.homesteadhearts.entities.toolbar;
 
+import com.github.hanyaeger.api.Coordinate2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -15,6 +16,10 @@ public class Toolbar extends Pane {
         setPrefSize(500, 60);
         drawHotBar();
         setOnMouseClicked(event -> checkHotBarSelected((int) event.getX(), (int) event.getY()));
+    }
+
+    public Toolbar(Coordinate2D location) {
+        this((int) location.getX(), (int) location.getY());
     }
 
     private void checkHotBarSelected(int mouseX, int mouseY) {
