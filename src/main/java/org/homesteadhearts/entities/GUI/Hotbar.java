@@ -3,6 +3,7 @@ package org.homesteadhearts.entities.GUI;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.RectangleEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Hotbar implements KeyListener, java.awt.event.KeyListener {
+public class Hotbar extends Node implements KeyListener, java.awt.event.KeyListener {
     private final List<RectangleEntity> slots;
 
 
@@ -105,5 +106,14 @@ public class Hotbar implements KeyListener, java.awt.event.KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public void setAnchorLocation(Coordinate2D coordinate2D) {
+
+    }
+
+    @Override
+    public Node getStyleableNode() {
+        return super.getStyleableNode();
     }
 }

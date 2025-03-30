@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import org.homesteadhearts.entities.GUI.Hotbar;
@@ -20,7 +21,8 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
     private Player player;
     private Bunny bunny;
-
+    private Hotbar hotbar;
+private Pane uiPane;
 
     public GameLevel() {
     }
@@ -31,6 +33,8 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         setSize(new Size(2000, 2000));
         setRelativeScrollPosition(0.1, 0.1);
 
+//        uiPane = new Pane();
+//        getRootPane().getChildren().add(uiPane);   -- ik zat even te kijken naar Pane
     }
 
 
@@ -48,8 +52,9 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
         Hotbar hotbar = new Hotbar(new Coordinate2D(1000, 1000), 9);
         hotbar.getSlots().forEach(this::addEntity);
-    }
 
+//        uiPane.getChildren().add(hotbar);   -- dit moet ik later nog fixen
+    }
 
 
     @Override
@@ -62,6 +67,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
     public void explicitUpdate(final long timestamp) {
         var bunnyLocation = bunny.getAnchorLocation();
         setScrollPosition(bunnyLocation);
+
     }
 
     public void setupTileMaps() {
