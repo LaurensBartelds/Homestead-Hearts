@@ -1,23 +1,20 @@
-
 package org.homesteadhearts.entities.toolbar;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
-public class Toolbar extends JPanel {
+public class Toolbar extends Pane {
     private int selectedSlot = 0;
-    private int hotbarX;
-    private int hotbarY;
+    private final int hotbarX;
+    private final int hotbarY;
 
-    public Toolbar() {
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                checkHotBarSelected(e.getX(), e.getY());
-            }
-        });
+    public Toolbar(int hotbarX, int hotbarY) {
+        this.hotbarX = hotbarX;
+        this.hotbarY = hotbarY;
+        setPrefSize(500, 60);
+        drawHotBar();
+        setOnMouseClicked(event -> checkHotBarSelected((int) event.getX(), (int) event.getY()));
     }
 
     private void checkHotBarSelected(int mouseX, int mouseY) {
@@ -25,26 +22,29 @@ public class Toolbar extends JPanel {
             int slotX = hotbarX + (i * 50);
             if (mouseX >= slotX && mouseX <= slotX + 50 && mouseY >= hotbarY && mouseY <= hotbarY + 50) {
                 selectedSlot = i;
-                repaint();
+                drawHotBar();
                 break;
             }
         }
     }
 
-    private void drawHotBar(Graphics2D toolbar2d) {
+    private void drawHotBar() {
+        getChildren().clear();
         int hotbarX = 0;
         int hotbarY = 0;
 
-        toolbar2d.setColor(Color.YELLOW);
-        toolbar2d.fillRect(hotbarX - 3, hotbarY - 3, 10 * 50 + 10, 60);
+        Rectangle background = new Rectangle(hotbarX - 3, hotbarY - 3, 10 * 50 + 10, 60);
+        background.setFill(Color.YELLOW);
+        getChildren().add(background);
 
         for (int i = 0; i < 10; i++) {
             int slotX = hotbarX + (i * 50);
-            toolbar2d.setColor(Color.BLACK);
-            toolbar2d.drawRect(slotX, hotbarY, 50, 50);
+            Rectangle slot = new Rectangle(slotX, hotbarY, 50, 50);
+            slot.setFill(Color.TRANSPARENT);
+            slot.setStroke(Color.BLACK);
+            getChildren().add(slot);
             if (i == selectedSlot) {
-                toolbar2d.setColor(Color.RED);
-                toolbar2d.drawRect(slotX, hotbarY, 50, 50);
+                slot.setStroke(Color.RED);
             }
         }
     }
