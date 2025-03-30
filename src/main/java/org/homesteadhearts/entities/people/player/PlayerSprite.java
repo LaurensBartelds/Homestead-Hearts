@@ -22,24 +22,24 @@ public class PlayerSprite extends DynamicSpriteEntity implements KeyListener, Sc
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        if (!player.canMove()) {
-            setMotion(0, 0);
-            return;
-        }
-
-        if (pressedKeys.contains(KeyCode.A)) {
-            setMotion(3, 270d);
-            setCurrentFrameIndex(0);
-        } else if (pressedKeys.contains(KeyCode.D)) {
-            setMotion(3, 90d);
-            setCurrentFrameIndex(1);
-        } else if (pressedKeys.contains(KeyCode.W)) {
-            setMotion(3, 180d);
-        } else if (pressedKeys.contains(KeyCode.S)) {
-            setMotion(3, 0d);
-        } else if (pressedKeys.isEmpty()) {
-            setMotion(0, 0);
-        }
+//        if (!player.canMove()) {
+//            setMotion(0, 0);
+//            return;
+//        }
+//
+//        if (pressedKeys.contains(KeyCode.A)) {
+//            setMotion(3, 270d);
+//            setCurrentFrameIndex(0);
+//        } else if (pressedKeys.contains(KeyCode.D)) {
+//            setMotion(3, 90d);
+//            setCurrentFrameIndex(1);
+//        } else if (pressedKeys.contains(KeyCode.W)) {
+//            setMotion(3, 180d);
+//        } else if (pressedKeys.contains(KeyCode.S)) {
+//            setMotion(3, 0d);
+//        } else if (pressedKeys.isEmpty()) {
+//            setMotion(0, 0);
+//        }
     }
 
     @Override
