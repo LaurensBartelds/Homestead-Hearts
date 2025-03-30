@@ -13,6 +13,8 @@ import org.homesteadhearts.entities.people.player.Player;
 //import org.homesteadhearts.maps.GameLevelMap;
 import org.homesteadhearts.entities.crops.carrot.Carrot;
 import org.homesteadhearts.entities.toolbar.Toolbar;
+import org.homesteadhearts.maps.GroundLayerMap;
+import org.homesteadhearts.maps.TopLayerMap;
 
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer {
 
@@ -52,12 +54,12 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
     @Override
     public void explicitUpdate(final long timestamp) {
-        // Use bunny's location instead of player's location for scrolling
         var bunnyLocation = bunny.getAnchorLocation();
         setScrollPosition(bunnyLocation);
     }
 
     public void setupTileMaps(){
-//        addTileMap(new GameLevelMap());
+        addTileMap(new GroundLayerMap());
+        addTileMap(new TopLayerMap());
     }
 }
