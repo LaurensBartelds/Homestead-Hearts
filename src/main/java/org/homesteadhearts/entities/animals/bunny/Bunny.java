@@ -34,16 +34,16 @@ public class Bunny extends DynamicCompositeEntity implements SceneBorderCrossing
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        if (pressedKeys.contains(KeyCode.A)) {
+        if (pressedKeys.contains(KeyCode.LEFT)) {
             setMotion(5, 270d);
             sprite.setAuto(3, 100);
-        } else if (pressedKeys.contains(KeyCode.D)) {
+        } else if (pressedKeys.contains(KeyCode.RIGHT)) {
             setMotion(5, 90d);
             sprite.setAuto(2, 100);
-        } else if (pressedKeys.contains(KeyCode.W)) {
+        } else if (pressedKeys.contains(KeyCode.UP)) {
             setMotion(5, 180d);
             sprite.setAuto(1, 100);
-        } else if (pressedKeys.contains(KeyCode.S)) {
+        } else if (pressedKeys.contains(KeyCode.DOWN)) {
             setMotion(5, 0d);
             sprite.setAuto(0, 100);
         } else if (pressedKeys.isEmpty()) {

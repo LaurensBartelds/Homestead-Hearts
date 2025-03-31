@@ -34,15 +34,15 @@ public class Player extends DynamicCompositeEntity implements KeyListener, Colli
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
         // Handle movement (using existing code from the Bunny class as example)
         if (pressedKeys.contains(KeyCode.A)) {
-            setMotion(3, 270d);
+            setMotion(4, 270d);
             sprite.setCurrentFrameIndex(0);
         } else if (pressedKeys.contains(KeyCode.D)) {
-            setMotion(3, 90d);
+            setMotion(4, 90d);
             sprite.setCurrentFrameIndex(1);
         } else if (pressedKeys.contains(KeyCode.W)) {
-            setMotion(3, 180d);
+            setMotion(4, 180d);
         } else if (pressedKeys.contains(KeyCode.S)) {
-            setMotion(3, 0d);
+            setMotion(4, 0d);
         } else if (pressedKeys.isEmpty()) {
             setMotion(0, 0);
         }

@@ -52,21 +52,25 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         addToolsToToolbar();
     }
 
-    public void addToolsToToolbar(){
-        // Remove the local variable declaration; add directly to the field.
-        toolSlot.add(new Hoe("Wooden Hoe", "Plow description", 1, 0));
-        toolSlot.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1));
-        toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 2, 2));
-        toolSlot.add(new WateringCan("Iron wateringcan", "CAN water your plants", 2, 3));
-        toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 3, 4));
-        toolSlot.add(new WateringCan("Metal wateringcan", "CAN water your plants", 3, 5));
-        toolSlot.add(new Hoe("Crystal Hoe", "Hoe description", 4, 6));
-        toolSlot.add(new WateringCan("Crystal wateringcan", "CAN water your plants", 4, 7));
-        toolSlot.add(new Hoe("Diamond Hoe", "Hoe description", 5, 8));
-        toolSlot.add(new WateringCan("Diamond wateringcan", "CAN water your plants", 5, 9));
-
-        // Optional: Verify the tool types
-        System.out.println(toolSlot.get(1).getClass().getName());
+    public void addToolsToToolbar() {
+        boolean testingTrue = true;  // true =  lege slots. false = random tools in slots
+        if (testingTrue) {
+            for (int index = 0; index < numberOfSlots; index++) {
+                toolSlot.add(null); // lege slots
+            }
+        } else {
+            // Remove the local variable declaration; add directly to the field.
+            toolSlot.add(new Hoe("Wooden Hoe", "Plow description", 1, 0));
+            toolSlot.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1));
+            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 2, 2));
+            toolSlot.add(new WateringCan("Iron wateringcan", "CAN water your plants", 2, 3));
+            toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 3, 4));
+            toolSlot.add(new WateringCan("Metal wateringcan", "CAN water your plants", 3, 5));
+            toolSlot.add(new Hoe("Crystal Hoe", "Hoe description", 4, 6));
+            toolSlot.add(new WateringCan("Crystal wateringcan", "CAN water your plants", 4, 7));
+            toolSlot.add(new Hoe("Diamond Hoe", "Hoe description", 5, 8));
+            toolSlot.add(new WateringCan("Diamond wateringcan", "CAN water your plants", 5, 9));
+        }
     }
 
     public void selectSlot(int index) {
@@ -113,7 +117,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
                     slot.getAnchorLocation().getY() <= coordinate2D.getY() &&
                     coordinate2D.getY() <= slot.getAnchorLocation().getY() + slot.getHeight()) {
                 selectSlot(i);
-                System.out.println("Slot " + ( i + 1)  + " selected.");
+                System.out.println("Slot " + (i + 1) + " selected.");
 
                 // It’s a good idea to check we have a tool at this slot.
                 if (i < toolSlot.size() && toolSlot.get(i) != null) {
