@@ -1,47 +1,67 @@
 package org.homesteadhearts.entities.people.player;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
-import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
-import com.github.hanyaeger.api.scenes.SceneBorder;
-import org.homesteadhearts.entities.crops.carrot.CarrotHitbox;
+import com.github.hanyaeger.api.userinput.KeyListener;
+import javafx.scene.input.KeyCode;
+import org.homesteadhearts.maps.TileManager;
+import org.homesteadhearts.entities.tools.hoe.Hoe;
 
-import java.util.List;
+import java.util.Set;
 
-public class Player extends DynamicCompositeEntity implements SceneBorderCrossingWatcher, Collided {
-
-    private boolean canMove = true;
+public class Player extends DynamicCompositeEntity implements KeyListener, Collider {
+    private PlayerSprite sprite;
+    private TileManager tileManager;
+    private boolean hasHoe = true; // For simplicity, player starts with a hoe
+    private int selectedTool = 0; // 0 = no tool, 1 = hoe, etc.
 
     public Player(Coordinate2D location) {
         super(location);
     }
 
+    public void setTileManager(TileManager tileManager) {
+        this.tileManager = tileManager;
+    }
+
     @Override
     protected void setupEntities() {
-        PlayerSprite playerSprite = new PlayerSprite(new Coordinate2D(10, 3), this);
-        addEntity(playerSprite);
+        sprite = new PlayerSprite(new Coordinate2D(0, 0), this);
+        addEntity(sprite);
     }
 
     @Override
-    public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
-        // Handle boundary crossing
-    }
+    public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
+        // Handle movement (using existing code from the Bunny class as example)
+        if (pressedKeys.contains(KeyCode.A)) {
+            setMotion(3, 270d);
+            sprite.setCurrentFrameIndex(0);
+        } else if (pressedKeys.contains(KeyCode.D)) {
+            setMotion(3, 90d);
+            sprite.setCurrentFrameIndex(1);
+        } else if (pressedKeys.contains(KeyCode.W)) {
+            setMotion(3, 180d);
+        } else if (pressedKeys.contains(KeyCode.S)) {
+            setMotion(3, 0d);
+        } else if (pressedKeys.isEmpty()) {
+            setMotion(0, 0);
+        }
 
-    @Override
-    public void onCollision(List<Collider> collidingObject) {
-        for (Collider collider : collidingObject) {
-            if (collider instanceof CarrotHitbox) {
+        // Handle tile interaction
+        if (pressedKeys.contains(KeyCode.SPACE) && selectedTool == 1 && tileManager != null) {
+            // Plow the tile the player is standing on
+            tileManager.plowTile(getAnchorLocation());
+        }
 
-                canMove = false;
-                System.out.println("Player collided with carrot");
-            }
+        // Tool selection
+        if (pressedKeys.contains(KeyCode.DIGIT1)) {
+            selectedTool = 1; // Select hoe
+        } else if (pressedKeys.contains(KeyCode.DIGIT0)) {
+            selectedTool = 0; // No tool
         }
     }
 
     public boolean canMove() {
-        return canMove;
+        return true;
     }
-
 }

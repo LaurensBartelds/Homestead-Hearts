@@ -13,13 +13,15 @@ import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.people.player.Player;
 import org.homesteadhearts.entities.crops.carrot.Carrot;
 import org.homesteadhearts.maps.GroundLayerMap;
+import org.homesteadhearts.maps.TileManager;
 import org.homesteadhearts.maps.TopLayerMap;
 
-
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer {
-
     private Bunny bunny;
-
+    private Player player;
+    private GroundLayerMap groundLayerMap;
+    private TopLayerMap topLayerMap;
+    private TileManager tileManager;
 
     public GameLevel() {
     }
@@ -29,19 +31,24 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         setBackgroundColor(Color.WHITE);
         setSize(new Size(2000, 2000));
         setRelativeScrollPosition(0.1, 0.1);
-
     }
-
 
     @Override
     public void setupEntities() {
+        // Create maps first
+        groundLayerMap = new GroundLayerMap();
+        topLayerMap = new TopLayerMap();
+        tileManager = new TileManager(groundLayerMap, topLayerMap);
+
+        // Add entities
         bunny = new Bunny(new Coordinate2D(1000, 1000));
         addEntity(bunny);
 
         Carrot carrot = new Carrot(new Coordinate2D(1000, 1000));
         addEntity(carrot);
 
-        Player player = new Player(new Coordinate2D(1000, 1000));
+        player = new Player(new Coordinate2D(1000, 1000));
+        player.setTileManager(tileManager);
         addEntity(player);
 
         // Add the hotbar with stickyOnViewPort set to true
@@ -49,22 +56,14 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         addEntity(hotbar, true);
     }
 
-
-
-    @Override
-    public void addEntity(final YaegerEntity yaegerEntity) {
-        super.addEntity(yaegerEntity);
-    }
-
-
     @Override
     public void explicitUpdate(final long timestamp) {
-        var bunnyLocation = bunny.getAnchorLocation();
-        setScrollPosition(bunnyLocation);
+        var playerLocation = player.getAnchorLocation();
+        setScrollPosition(playerLocation);
     }
 
     public void setupTileMaps() {
-        addTileMap(new GroundLayerMap());
-        addTileMap(new TopLayerMap());
+        addTileMap(groundLayerMap);
+        addTileMap(topLayerMap);
     }
 }

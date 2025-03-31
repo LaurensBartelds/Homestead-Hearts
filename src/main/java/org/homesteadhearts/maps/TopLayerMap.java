@@ -53,8 +53,17 @@ public class TopLayerMap extends TileMap {
         addEntity(TopTileType.GRASS_7.getValue(), Tiles.class, "sprites/tiles/individual_tiles/grass-7.png");
     }
 
+    private int[][] currentMap;
+
     @Override
     public int[][] defineMap() {
+        if (currentMap == null) {
+            currentMap = createInitialMap();
+        }
+        return currentMap;
+    }
+
+    private int[][] createInitialMap() {
         return new int[][]{
                 {2, 2, 19, 0, 20, 0, 0, 21, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 19, 0, 0, 20, 0, 23, 0, 0, 22, 0, 24, 0},
                 {2, 2, 0, 20, 0, 23, 0, 0, 22, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 20, 0, 0, 19, 0, 22, 0, 0},
@@ -89,5 +98,15 @@ public class TopLayerMap extends TileMap {
                 {2, 2, 0, 22, 0, 0, 20, 0, 0, 23, 0, 0, 19, 0, 0, 21, 0, 0, 20, 0, 0, 22, 23, 0, 0, 19, 0, 0, 21, 0, 0, 22, 0, 0, 20, 0, 0, 19},
                 {2, 2, 19, 0, 0, 21, 0, 0, 22, 0, 0, 19, 0, 0, 23, 0, 0, 21, 0, 0, 20, 0, 0, 19, 0, 0, 22, 0, 0, 20, 0, 0, 23, 0, 0, 19, 0, 21}
         };
+    }
+
+    public void setTileValue(int x, int y, int value) {
+        if (currentMap != null && y >= 0 && y < currentMap.length && x >= 0 && x < currentMap[0].length) {
+            currentMap[y][x] = value;
+            redrawTileMap();
+        }
+    }
+
+    private void redrawTileMap() {
     }
 }
