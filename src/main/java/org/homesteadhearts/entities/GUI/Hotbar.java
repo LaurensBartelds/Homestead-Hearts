@@ -4,16 +4,18 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.CompositeEntity;
 import com.github.hanyaeger.api.entities.impl.RectangleEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
+import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.tools.Tool;
-import org.homesteadhearts.entities.tools.plow.Plow;
+import org.homesteadhearts.entities.tools.hoe.Hoe;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Hotbar extends CompositeEntity implements KeyListener {
+public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonPressedListener {
     private final List<RectangleEntity> slots;
     private final int numberOfSlots;
 
@@ -47,7 +49,7 @@ public class Hotbar extends CompositeEntity implements KeyListener {
 
         //-- add arrayList with tools max 9
         ArrayList<Tool> tools = new ArrayList<Tool>();
-        tools.add(new Plow("Plow", "Plow description", 1, 0));
+        tools.add(new Hoe("Plow", "Plow description", 1, 0));
         System.out.println(tools.get(0).getName());
     }
 
@@ -84,4 +86,21 @@ public class Hotbar extends CompositeEntity implements KeyListener {
             selectSlot(8);
         }
     }
+
+    @Override
+    public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
+        for (int i = 0; i < slots.size(); i++) {
+            RectangleEntity slot = slots.get(i);
+            if (slot.getAnchorLocation().getX() <= coordinate2D.getX() && coordinate2D.getX() <= slot.getAnchorLocation().getX() + slot.getWidth()
+                    && slot.getAnchorLocation().getY() <= coordinate2D.getY() && coordinate2D.getY() <= slot.getAnchorLocation().getY() + slot.getHeight()) {
+                selectSlot(i);
+
+                System.out.println("slot" + i);
+                break;
+            }
+        }
+    }
+
+
+
 }
