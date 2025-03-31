@@ -20,6 +20,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
     private final List<RectangleEntity> slots;
     private final int numberOfSlots;
     private final List<Tool> toolSlot = new ArrayList<>();
+    boolean testingTrue = true;
 
     public Hotbar(Coordinate2D initialLocation, int numberOfSlots) {
         super(initialLocation);
@@ -47,41 +48,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
             slots.add(slot);
             addEntity(slot);
         }
-
-        // Populate the toolSlot field after the slots have been created.
-        addToolsToToolbar();
-    }
-
-    public void addToolsToToolbar() {
-        boolean testingTrue = true;  // true =  lege slots. false = random tools in slots
-        if (testingTrue) {
-            for (int index = 0; index < numberOfSlots; index++) {
-                toolSlot.add(null); // lege slots
-            }
-        } else {
-            // Remove the local variable declaration; add directly to the field.
-            toolSlot.add(new Hoe("Wooden Hoe", "Plow description", 1, 0));
-            toolSlot.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1));
-            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 2, 2));
-            toolSlot.add(new WateringCan("Iron wateringcan", "CAN water your plants", 2, 3));
-            toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 3, 4));
-            toolSlot.add(new WateringCan("Metal wateringcan", "CAN water your plants", 3, 5));
-            toolSlot.add(new Hoe("Crystal Hoe", "Hoe description", 4, 6));
-            toolSlot.add(new WateringCan("Crystal wateringcan", "CAN water your plants", 4, 7));
-            toolSlot.add(new Hoe("Diamond Hoe", "Hoe description", 5, 8));
-            toolSlot.add(new WateringCan("Diamond wateringcan", "CAN water your plants", 5, 9));
-        }
-    }
-
-    public void selectSlot(int index) {
-        for (int i = 0; i < slots.size(); i++) {
-            RectangleEntity slot = slots.get(i);
-            if (i == index) {
-                slot.setFill(Color.ROSYBROWN);
-            } else {
-                slot.setFill(Color.BEIGE);
-            }
-        }
+        addToolsToToolbar(); // test hotbar
     }
 
     @Override
@@ -104,8 +71,67 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
             selectSlot(7);
         } else if (pressedKey.contains(KeyCode.DIGIT9)) {
             selectSlot(8);
+        } if(pressedKey.contains(KeyCode.P)) {
+            emptyHotbar();
+        }
+
+//        if (pressedKey.contains(KeyCode.T)) {
+//            System.out.println("testingTrue: true");
+//            testingTrue = true;
+//            addToolsToToolbar();
+//            testingTrue = false;
+//        }
+//        if (pressedKey.contains(KeyCode.F)) {
+//            System.out.println("testingTrue: false");
+//            testingTrue = false;
+//            addToolsToToolbar();
+//        }
+    }
+
+    public void addToolsToToolbar() {
+        if (testingTrue==false) {
+            for (int index = 0; index < numberOfSlots; index++) {
+                toolSlot.add(null); // lege slots
+
+            }
+        } if(testingTrue == true) {
+            toolSlot.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1));
+            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 2, 2));
+            toolSlot.add(new WateringCan("Iron wateringcan", "CAN water your plants", 2, 3));
+            toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 3, 4));
+            toolSlot.add(new WateringCan("Metal wateringcan", "CAN water your plants", 3, 5));
+            toolSlot.add(new Hoe("Crystal Hoe", "Hoe description", 4, 6));
+            toolSlot.add(new WateringCan("Crystal wateringcan", "CAN water your plants", 4, 7));
+            toolSlot.add(new Hoe("Diamond Hoe", "Hoe description", 5, 8));
+
+//            for (int i = 0; i < toolSlot.size(); i++) {
+//                Tool tool = toolSlot.get(i);
+//                if (tool != null) {
+//                    // Set the tool’s location relative to its slot location.
+//                    // For example, position it at the center of the slot.
+//                    Coordinate2D slotLocation = slots.get(i).getAnchorLocation();
+//                    double offsetX = (slots.get(i).getWidth() - 75) / 2; // assuming sprite width is 75
+//                    double offsetY = (slots.get(i).getHeight() - 75) / 2; // assuming sprite height is 75
+//                    tool.setAnchorLocation(new Coordinate2D(slotLocation.getX() + offsetX, slotLocation.getY() + offsetY));
+//
+//                    // Add the tool (and its sprite) as a child of Hotbar.
+//                    addEntity(tool);
+//                }
+//            }
         }
     }
+
+    public void selectSlot(int index) {
+        for (int i = 0; i < slots.size(); i++) {
+            RectangleEntity slot = slots.get(i);
+            if (i == index) {
+                slot.setFill(Color.ROSYBROWN);
+            } else {
+                slot.setFill(Color.BEIGE);
+            }
+        }
+    }
+
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
@@ -128,6 +154,14 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
                 }
                 break;
             }
+        }
+    }
+
+    public void emptyHotbar() {
+        for (int i = 0; i < numberOfSlots; i++) {
+
+            toolSlot.set(i, null); // Set each slot to null
+            slots.get(i).setFill(Color.BEIGE); // Reset the color of the slot
         }
     }
 }
