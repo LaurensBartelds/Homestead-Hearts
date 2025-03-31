@@ -10,6 +10,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.tools.Tool;
 import org.homesteadhearts.entities.tools.hoe.Hoe;
+import org.homesteadhearts.entities.tools.hoe.WateringCan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Set;
 public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonPressedListener {
     private final List<RectangleEntity> slots;
     private final int numberOfSlots;
+    private final List<Tool> toolSlot = new ArrayList<>();
 
     public Hotbar(Coordinate2D initialLocation, int numberOfSlots) {
         super(initialLocation);
@@ -31,7 +33,6 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         double slotHeight = 70;
         double spacing = 2;
 
-        // Create individual slots
         for (int i = 0; i < numberOfSlots; i++) {
             double xPosition = i * (slotWidth + spacing);
             Coordinate2D slotPosition = new Coordinate2D(xPosition, 0);
@@ -47,14 +48,29 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
             addEntity(slot);
         }
 
-        //-- add arrayList with tools max 9
-        ArrayList<Tool> tools = new ArrayList<Tool>();
-        tools.add(new Hoe("Plow", "Plow description", 1, 0));
-        System.out.println(tools.get(0).getName());
+        // Populate the toolSlot field after the slots have been created.
+        addToolsToToolbar();
+    }
+
+    public void addToolsToToolbar(){
+        // Remove the local variable declaration; add directly to the field.
+        toolSlot.add(new Hoe("Wooden Hoe", "Plow description", 1, 0));
+        toolSlot.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1));
+        toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 2, 2));
+        toolSlot.add(new WateringCan("Iron wateringcan", "CAN water your plants", 2, 3));
+        toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 3, 4));
+        toolSlot.add(new WateringCan("Metal wateringcan", "CAN water your plants", 3, 5));
+        toolSlot.add(new Hoe("Crystal Hoe", "Hoe description", 4, 6));
+        toolSlot.add(new WateringCan("Crystal wateringcan", "CAN water your plants", 4, 7));
+        toolSlot.add(new Hoe("Diamond Hoe", "Hoe description", 5, 8));
+        toolSlot.add(new WateringCan("Diamond wateringcan", "CAN water your plants", 5, 9));
+
+        // Optional: Verify the tool types
+        System.out.println(toolSlot.get(1).getClass().getName());
     }
 
     public void selectSlot(int index) {
-        for(int i = 0; i < slots.size(); i++) {
+        for (int i = 0; i < slots.size(); i++) {
             RectangleEntity slot = slots.get(i);
             if (i == index) {
                 slot.setFill(Color.ROSYBROWN);
@@ -91,16 +107,23 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
         for (int i = 0; i < slots.size(); i++) {
             RectangleEntity slot = slots.get(i);
-            if (slot.getAnchorLocation().getX() <= coordinate2D.getX() && coordinate2D.getX() <= slot.getAnchorLocation().getX() + slot.getWidth()
-                    && slot.getAnchorLocation().getY() <= coordinate2D.getY() && coordinate2D.getY() <= slot.getAnchorLocation().getY() + slot.getHeight()) {
+            // Check if the mouse click is within the bounds of the slot.
+            if (slot.getAnchorLocation().getX() <= coordinate2D.getX() &&
+                    coordinate2D.getX() <= slot.getAnchorLocation().getX() + slot.getWidth() &&
+                    slot.getAnchorLocation().getY() <= coordinate2D.getY() &&
+                    coordinate2D.getY() <= slot.getAnchorLocation().getY() + slot.getHeight()) {
                 selectSlot(i);
+                System.out.println("Slot " + ( i + 1)  + " selected.");
 
-                System.out.println("slot" + i);
+                // It’s a good idea to check we have a tool at this slot.
+                if (i < toolSlot.size() && toolSlot.get(i) != null) {
+                    Tool tool = toolSlot.get(i);
+                    System.out.println("Tool name: " + tool.getName());
+                } else {
+                    System.out.println("No tool assigned to this slot.");
+                }
                 break;
             }
         }
     }
-
-
-
 }

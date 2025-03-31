@@ -12,6 +12,8 @@ import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.people.player.Player;
 import org.homesteadhearts.entities.crops.carrot.Carrot;
+import org.homesteadhearts.entities.tools.Tool;
+import org.homesteadhearts.entities.tools.hoe.Hoe;
 import org.homesteadhearts.maps.GroundLayerMap;
 import org.homesteadhearts.maps.TileManager;
 import org.homesteadhearts.maps.TopLayerMap;
@@ -54,6 +56,8 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         // Add the hotbar with stickyOnViewPort set to true
         Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth()/2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
+
+
     }
 
     @Override
