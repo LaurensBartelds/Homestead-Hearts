@@ -4,10 +4,10 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 
 public class Tool extends DynamicCompositeEntity {
-    String name;
-    String description;
-    int level;
-    int inSlot;
+    protected String name;
+    protected String description;
+    protected int level;
+    protected int inSlot;
 
     public Tool(String name, String description, int level, int inSlot) {
         super(new Coordinate2D(0,0));
@@ -25,4 +25,13 @@ public class Tool extends DynamicCompositeEntity {
     public String getName() {
         return this.name;
     }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+public void useTool(){
+
+
+}
 }

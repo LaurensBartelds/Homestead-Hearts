@@ -10,11 +10,12 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.tools.Tool;
 import org.homesteadhearts.entities.tools.hoe.Hoe;
-import org.homesteadhearts.entities.tools.hoe.WateringCan;
+import org.homesteadhearts.entities.tools.wateringCan.WateringCan;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonPressedListener {
     private final List<RectangleEntity> slots;
@@ -49,6 +50,28 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
             addEntity(slot);
         }
         addToolsToToolbar(); // test hotbar
+
+        IntStream.range(0, Math.min(slots.size(), toolSlot.size()))
+                .forEach(i -> {
+                    Tool tool = toolSlot.get(i);
+                    if (tool != null) {
+                        RectangleEntity slot = slots.get(i);
+                        Coordinate2D slotLocation = slot.getAnchorLocation();
+
+                        // Compute offsets (assuming your sprite is 75x75)
+                        double offsetX = (slot.getWidth() - 75) / 2.0;
+                        double offsetY = (slot.getHeight() - 75) / 2.0;
+
+                        // Set the tool's position relative to its slot
+                        tool.setAnchorLocation(new Coordinate2D(
+                                slotLocation.getX() + offsetX,
+                                slotLocation.getY() + offsetY
+                        ));
+
+                        // Add the tool entity to the scene so its sprite is rendered.
+                        addEntity(tool);
+                    }
+                });
     }
 
     @Override
@@ -71,53 +94,28 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
             selectSlot(7);
         } else if (pressedKey.contains(KeyCode.DIGIT9)) {
             selectSlot(8);
-        } if(pressedKey.contains(KeyCode.P)) {
+        }
+        if (pressedKey.contains(KeyCode.P)) {
             emptyHotbar();
         }
+        if(pressedKey.contains(KeyCode.T)){
+            addToolsToToolbar();
+        }
 
-//        if (pressedKey.contains(KeyCode.T)) {
-//            System.out.println("testingTrue: true");
-//            testingTrue = true;
-//            addToolsToToolbar();
-//            testingTrue = false;
-//        }
-//        if (pressedKey.contains(KeyCode.F)) {
-//            System.out.println("testingTrue: false");
-//            testingTrue = false;
-//            addToolsToToolbar();
-//        }
     }
 
     public void addToolsToToolbar() {
-        if (testingTrue==false) {
-            for (int index = 0; index < numberOfSlots; index++) {
-                toolSlot.add(null); // lege slots
-
-            }
-        } if(testingTrue == true) {
+        if (testingTrue) {
             toolSlot.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1));
-            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 2, 2));
+            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 1, 2));
             toolSlot.add(new WateringCan("Iron wateringcan", "CAN water your plants", 2, 3));
-            toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 3, 4));
+            toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 2, 4));
             toolSlot.add(new WateringCan("Metal wateringcan", "CAN water your plants", 3, 5));
-            toolSlot.add(new Hoe("Crystal Hoe", "Hoe description", 4, 6));
+            toolSlot.add(new Hoe("Crystal Hoe", "Hoe description", 3, 6));
             toolSlot.add(new WateringCan("Crystal wateringcan", "CAN water your plants", 4, 7));
-            toolSlot.add(new Hoe("Diamond Hoe", "Hoe description", 5, 8));
+            toolSlot.add(new Hoe("Diamond Hoe", "Hoe description", 4, 8));
+            toolSlot.add(new Hoe("best Hoe", "Hoe description", 5, 8));
 
-//            for (int i = 0; i < toolSlot.size(); i++) {
-//                Tool tool = toolSlot.get(i);
-//                if (tool != null) {
-//                    // Set the tool’s location relative to its slot location.
-//                    // For example, position it at the center of the slot.
-//                    Coordinate2D slotLocation = slots.get(i).getAnchorLocation();
-//                    double offsetX = (slots.get(i).getWidth() - 75) / 2; // assuming sprite width is 75
-//                    double offsetY = (slots.get(i).getHeight() - 75) / 2; // assuming sprite height is 75
-//                    tool.setAnchorLocation(new Coordinate2D(slotLocation.getX() + offsetX, slotLocation.getY() + offsetY));
-//
-//                    // Add the tool (and its sprite) as a child of Hotbar.
-//                    addEntity(tool);
-//                }
-//            }
         }
     }
 

@@ -1,11 +1,9 @@
-package org.homesteadhearts.entities.tools.hoe;
+package org.homesteadhearts.entities.tools.wateringCan;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import org.homesteadhearts.entities.tools.Tool;
-import org.homesteadhearts.entities.tools.wateringCan.WateringCanSprite;
 
 public class WateringCan extends Tool {
-    private WateringCanSprite wateringCanSprite;
 
 
     public WateringCan(String name, String description, int level, int inSlot) {
@@ -15,7 +13,7 @@ public class WateringCan extends Tool {
 
     @Override
     public void setupEntities () {
-        wateringCanSprite = new WateringCanSprite(new Coordinate2D(1000,1000));
+        WateringCanSprite wateringCanSprite = new WateringCanSprite(new Coordinate2D(15, 0), level);
         addEntity(wateringCanSprite);
     }
 
