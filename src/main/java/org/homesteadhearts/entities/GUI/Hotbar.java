@@ -1,32 +1,36 @@
 package org.homesteadhearts.entities.GUI;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.CompositeEntity;
 import com.github.hanyaeger.api.entities.impl.RectangleEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
-import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Hotbar extends Node implements KeyListener, java.awt.event.KeyListener {
+public class Hotbar extends CompositeEntity implements KeyListener {
     private final List<RectangleEntity> slots;
-
+    private final int numberOfSlots;
 
     public Hotbar(Coordinate2D initialLocation, int numberOfSlots) {
+        super(initialLocation);
+        this.numberOfSlots = numberOfSlots;
         slots = new ArrayList<>();
+    }
+
+    @Override
+    public void setupEntities() {
         double slotWidth = 50;
         double slotHeight = 50;
         double spacing = 5;
 
         // Create individual slots
         for (int i = 0; i < numberOfSlots; i++) {
-            double xPosition = initialLocation.getX() + i * (slotWidth + spacing);
-            Coordinate2D slotPosition = new Coordinate2D(xPosition, initialLocation.getY());
-
+            double xPosition = i * (slotWidth + spacing);
+            Coordinate2D slotPosition = new Coordinate2D(xPosition, 0);
 
             RectangleEntity slot = new RectangleEntity(slotPosition) {
                 {
@@ -36,17 +40,12 @@ public class Hotbar extends Node implements KeyListener, java.awt.event.KeyListe
                 }
             };
             slots.add(slot);
+            addEntity(slot);
         }
-
     }
-
-    public List<RectangleEntity> getSlots() {
-        return slots;
-    }
-
 
     public void selectSlot(int index) {
-        for(int i = 0 ; i < slots.size(); i++) {
+        for(int i = 0; i < slots.size(); i++) {
             RectangleEntity slot = slots.get(i);
             if (i == index) {
                 slot.setFill(Color.RED);
@@ -58,62 +57,24 @@ public class Hotbar extends Node implements KeyListener, java.awt.event.KeyListe
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKey) {
-
-        if (pressedKey.contains(KeyCode.DIGIT0)) {
+        if (pressedKey.contains(KeyCode.DIGIT1)) {
             selectSlot(0);
-            System.out.println("hello test");
-//        }
-//        if (pressedKey.contains(KeyCode.X)) {
-//            selectSlot(1);
-//
-//        }
-//        if (pressedKey.contains(KeyCode.C)) {
-//            selectSlot(2);
-//        }
-//        if (pressedKey.contains(KeyCode.V)) {
-//            selectSlot(3);
-//        }
-//        if (pressedKey.contains(KeyCode.B)) {
-//            selectSlot(4);
-//        }
-//        if (pressedKey.contains(KeyCode.N)) {
-//            selectSlot(5);
-//        }
-//        if (pressedKey.contains(KeyCode.M)) {
-//            selectSlot(6);
-//        }
-//        if (pressedKey.contains(KeyCode.DIGIT7)) {
-//            selectSlot(7);
-//        }
-//        if (pressedKey.contains(KeyCode.DIGIT8)) {
-//            selectSlot(8);
-//        }
-//        if (pressedKey.contains(KeyCode.DIGIT9)) {
-//            selectSlot(9);
-       }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
-
-    public void setAnchorLocation(Coordinate2D coordinate2D) {
-
-    }
-
-    @Override
-    public Node getStyleableNode() {
-        return super.getStyleableNode();
+        } else if (pressedKey.contains(KeyCode.DIGIT2)) {
+            selectSlot(1);
+        } else if (pressedKey.contains(KeyCode.DIGIT3)) {
+            selectSlot(2);
+        } else if (pressedKey.contains(KeyCode.DIGIT4)) {
+            selectSlot(3);
+        } else if (pressedKey.contains(KeyCode.DIGIT5)) {
+            selectSlot(4);
+        } else if (pressedKey.contains(KeyCode.DIGIT6)) {
+            selectSlot(5);
+        } else if (pressedKey.contains(KeyCode.DIGIT7)) {
+            selectSlot(6);
+        } else if (pressedKey.contains(KeyCode.DIGIT8)) {
+            selectSlot(7);
+        } else if (pressedKey.contains(KeyCode.DIGIT9)) {
+            selectSlot(8);
+        }
     }
 }
