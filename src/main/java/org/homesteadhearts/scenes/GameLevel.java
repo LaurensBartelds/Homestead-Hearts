@@ -18,7 +18,6 @@ import org.homesteadhearts.maps.TopLayerMap;
 
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer {
 
-    private Player player;
     private Bunny bunny;
 
 
@@ -36,18 +35,18 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
     @Override
     public void setupEntities() {
-
         bunny = new Bunny(new Coordinate2D(1000, 1000));
         addEntity(bunny);
 
         Carrot carrot = new Carrot(new Coordinate2D(1000, 1000));
         addEntity(carrot);
 
-        player = new Player(new Coordinate2D(1000, 1000));
+        Player player = new Player(new Coordinate2D(1000, 1000));
         addEntity(player);
 
-        Hotbar hotbar = new Hotbar(new Coordinate2D(1000, 1000), 9);
-        hotbar.getSlots().forEach(this::addEntity);
+        // Add the hotbar with stickyOnViewPort set to true
+        Hotbar hotbar = new Hotbar(new Coordinate2D(100, 100), 9);
+        addEntity(hotbar, true);
     }
 
 
