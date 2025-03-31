@@ -6,6 +6,8 @@ import com.github.hanyaeger.api.entities.impl.RectangleEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import org.homesteadhearts.entities.tools.Tool;
+import org.homesteadhearts.entities.tools.plow.Plow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +25,9 @@ public class Hotbar extends CompositeEntity implements KeyListener {
 
     @Override
     public void setupEntities() {
-        double slotWidth = 50;
-        double slotHeight = 50;
-        double spacing = 5;
+        double slotWidth = 70;
+        double slotHeight = 70;
+        double spacing = 2;
 
         // Create individual slots
         for (int i = 0; i < numberOfSlots; i++) {
@@ -36,21 +38,26 @@ public class Hotbar extends CompositeEntity implements KeyListener {
                 {
                     setWidth(slotWidth);
                     setHeight(slotHeight);
-                    setFill(Color.ROSYBROWN);
+                    setFill(Color.BEIGE);
                 }
             };
             slots.add(slot);
             addEntity(slot);
         }
+
+        //-- add arrayList with tools max 9
+        ArrayList<Tool> tools = new ArrayList<Tool>();
+        tools.add(new Plow("Plow", "Plow description", 1, 0));
+        System.out.println(tools.get(0).getName());
     }
 
     public void selectSlot(int index) {
         for(int i = 0; i < slots.size(); i++) {
             RectangleEntity slot = slots.get(i);
             if (i == index) {
-                slot.setFill(Color.RED);
-            } else {
                 slot.setFill(Color.ROSYBROWN);
+            } else {
+                slot.setFill(Color.BEIGE);
             }
         }
     }

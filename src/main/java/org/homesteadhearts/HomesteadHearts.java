@@ -5,7 +5,6 @@ import com.github.hanyaeger.api.YaegerGame;
 import org.homesteadhearts.scenes.GameLevel;
 import org.homesteadhearts.scenes.TitleScene;
 
-import com.github.hanyaeger.api.Coordinate2D;
 
 public class HomesteadHearts extends YaegerGame {
 
@@ -19,9 +18,6 @@ public class HomesteadHearts extends YaegerGame {
     public void setupGame() {
         setGameTitle("Homestead Hearts");
         setSize(GAME_SIZE);
-
-
-
     }
 
     @Override

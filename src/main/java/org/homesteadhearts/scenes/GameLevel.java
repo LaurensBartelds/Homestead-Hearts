@@ -45,7 +45,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         addEntity(player);
 
         // Add the hotbar with stickyOnViewPort set to true
-        Hotbar hotbar = new Hotbar(new Coordinate2D(100, 100), 9);
+        Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth()/2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
     }
 
