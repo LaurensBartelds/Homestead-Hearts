@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import javafx.scene.paint.Color;
 
+import org.homesteadhearts.entities.GUI.CoinsTest;
 import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.people.player.Player;
@@ -46,7 +47,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         Carrot carrot = new Carrot(new Coordinate2D(1000, 1000));
         addEntity(carrot);
 
-        player = new Player(new Coordinate2D(1000, 1000));
+        player = new Player(new Coordinate2D(1000, 1000),500);
         player.setTileManager(tileManager);
         addEntity(player);
 
@@ -54,7 +55,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth()/2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
 
-
+        addEntity(new CoinsTest(new Coordinate2D(100, 50)), true);
     }
 
     @Override

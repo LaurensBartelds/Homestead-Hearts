@@ -1,4 +1,12 @@
 package org.homesteadhearts.entities.GUI;
 
-public class UI {
+import java.awt.*;
+
+public class UI extends Component {
+
+    public UI() {
+
+    }
+
+
 }
