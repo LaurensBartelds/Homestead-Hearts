@@ -55,7 +55,8 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth()/2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
 
-        addEntity(new CoinsTest(new Coordinate2D(100, 50)), true);
+        addEntity(new CoinsTest(new Coordinate2D(100, 30),"coins ", 50), true);
+
     }
 
     @Override

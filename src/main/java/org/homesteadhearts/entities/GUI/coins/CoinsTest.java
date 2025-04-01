@@ -7,9 +7,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class CoinsTest extends TextEntity {
-    public CoinsTest(Coordinate2D initialLocation) {
-        super(initialLocation, "Coins: 0");
-        setFill(Color.WHITE);
+    public CoinsTest(Coordinate2D initialLocation, String text, int money) {
+        super(initialLocation, text + money);
+        setFill(Color.LIGHTGOLDENRODYELLOW);
         setFont(Font.font("Roboto", FontWeight.BOLD, 30));
     }
+
+    public void setCoinAmount(int coinAmount) {
+
+        setText("Coins" + coinAmount);
+    }
+
 }

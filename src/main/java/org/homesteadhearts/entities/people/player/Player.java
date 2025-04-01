@@ -5,6 +5,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
+import org.homesteadhearts.entities.GUI.coins.CoinsTest;
 import org.homesteadhearts.maps.tiles.TileManager;
 
 import java.util.Set;
@@ -28,6 +29,8 @@ public class Player extends DynamicCompositeEntity implements KeyListener, Colli
     protected void setupEntities() {
         sprite = new PlayerSprite(new Coordinate2D(0, 0), this);
         addEntity(sprite);
+
+
     }
 
     @Override
