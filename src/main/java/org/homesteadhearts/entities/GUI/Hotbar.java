@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.tools.Tool;
+import org.homesteadhearts.entities.tools.axe.Axe;
 import org.homesteadhearts.entities.tools.hoe.Hoe;
 import org.homesteadhearts.entities.tools.wateringCan.WateringCan;
 
@@ -22,6 +23,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
     private final int numberOfSlots;
     private final List<Tool> toolSlot = new ArrayList<>();
     boolean testingTrue = true;
+    int selectedSlot = 1;
 
     public Hotbar(Coordinate2D initialLocation, int numberOfSlots) {
         super(initialLocation);
@@ -101,21 +103,23 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         if(pressedKey.contains(KeyCode.T)){
             addToolsToToolbar();
         }
-
+        if(pressedKey.contains(KeyCode.E)){
+            toolSlot.get(selectedSlot).useTool();
+        }
     }
 
     public void addToolsToToolbar() {
         if (testingTrue) {
-            toolSlot.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1));
-            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 1, 2));
-            toolSlot.add(new WateringCan("Iron wateringcan", "CAN water your plants", 2, 3));
-            toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 2, 4));
-            toolSlot.add(new WateringCan("Metal wateringcan", "CAN water your plants", 3, 5));
-            toolSlot.add(new Hoe("Crystal Hoe", "Hoe description", 3, 6));
-            toolSlot.add(new WateringCan("Crystal wateringcan", "CAN water your plants", 4, 7));
-            toolSlot.add(new Hoe("Diamond Hoe", "Hoe description", 4, 8));
-            toolSlot.add(new Hoe("best Hoe", "Hoe description", 5, 8));
-
+            toolSlot.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1, "Wood"));
+            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 1, 2, "Wood"));
+            toolSlot.add(new Axe("Wooden Axe", "Axe description", 1, 3, "Wood"));
+            toolSlot.add(new WateringCan("Metal wateringcan", "CAN water your plants", 2, 4, "Metal"));
+            toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 2, 5, "Metal"));
+            toolSlot.add(new Axe("Metal Axe", "Axe description", 2, 6, "Metal"));
+            toolSlot.add(new WateringCan("Iron wateringcan", "CAN water your plants", 3, 7, "Iron"));
+            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 3, 8, "Iron"));
+            toolSlot.add(new Axe("Iron Axe", "Axe description", 3, 9, "Iron"));
+// prima, alleen nog sprites dus aanpassen
         }
     }
 
@@ -123,6 +127,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         for (int i = 0; i < slots.size(); i++) {
             RectangleEntity slot = slots.get(i);
             if (i == index) {
+                selectedSlot = i;
                 slot.setFill(Color.ROSYBROWN);
             } else {
                 slot.setFill(Color.BEIGE);
@@ -153,6 +158,8 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
                 break;
             }
         }
+
+
     }
 
     public void emptyHotbar() {
@@ -161,5 +168,9 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
             toolSlot.set(i, null); // Set each slot to null
             slots.get(i).setFill(Color.BEIGE); // Reset the color of the slot
         }
+    }
+
+    public int getSelectedSlot() {
+        return selectedSlot;
     }
 }

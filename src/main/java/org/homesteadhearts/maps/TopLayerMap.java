@@ -45,7 +45,7 @@ public class TopLayerMap extends TileMap {
         // Add flower tiles
         addEntity(TopTileType.FLOWERS.getValue(), Tiles.class, "sprites/tiles/individual_tiles/flowers-1.png");
 
-        // Add grass variants
+        // Add grass variants   -- hier kan je for-loop van maken
         addEntity(TopTileType.GRASS_1.getValue(), Tiles.class, "sprites/tiles/individual_tiles/grass-1.png");
         addEntity(TopTileType.GRASS_2.getValue(), Tiles.class, "sprites/tiles/individual_tiles/grass-2.png");
         addEntity(TopTileType.GRASS_3.getValue(), Tiles.class, "sprites/tiles/individual_tiles/grass-3.png");
@@ -59,7 +59,7 @@ public class TopLayerMap extends TileMap {
 
     @Override
     public int[][] defineMap() {
-        if (currentMap == null) {
+        if (currentMap == null ) {
             currentMap = createInitialMap();
         }
         return currentMap;
