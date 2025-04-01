@@ -1,6 +1,7 @@
 package org.homesteadhearts.maps;
 
 import com.github.hanyaeger.api.scenes.TileMap;
+import org.homesteadhearts.maps.tiles.ClickableTile;
 import org.homesteadhearts.maps.tiles.Tiles;
 
 public class TopLayerMap extends TileMap {
@@ -37,7 +38,7 @@ public class TopLayerMap extends TileMap {
     @Override
     public void setupEntities() {
         // Add farm land variants
-        addEntity(TopTileType.FARM_LAND_1.getValue(), Tiles.class, "sprites/tiles/individual_tiles/farm-land-1.png");
+        addEntity(TopTileType.FARM_LAND_1.getValue(), ClickableTile.class, "sprites/tiles/individual_tiles/farm-land-1.png");
         addEntity(TopTileType.FARM_LAND_2.getValue(), Tiles.class, "sprites/tiles/individual_tiles/farm-land-2.png");
         addEntity(TopTileType.FARM_LAND_3.getValue(), Tiles.class, "sprites/tiles/individual_tiles/farm-land-3.png");
 
