@@ -20,7 +20,9 @@ public class Carrot extends DynamicCompositeEntity {
         addEntity(carrotHitbox);
     }
 
+    public void growCrops(){
 
+    }
 
 
 

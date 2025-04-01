@@ -23,6 +23,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
     private final int numberOfSlots;
     private final List<Tool> toolSlot = new ArrayList<>();
     boolean testingTrue = true;
+    int selectedSlot = 1;
 
     public Hotbar(Coordinate2D initialLocation, int numberOfSlots) {
         super(initialLocation);
@@ -102,7 +103,9 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         if(pressedKey.contains(KeyCode.T)){
             addToolsToToolbar();
         }
-
+        if(pressedKey.contains(KeyCode.E)){
+            toolSlot.get(selectedSlot).useTool();
+        }
     }
 
     public void addToolsToToolbar() {
@@ -124,6 +127,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         for (int i = 0; i < slots.size(); i++) {
             RectangleEntity slot = slots.get(i);
             if (i == index) {
+                selectedSlot = i;
                 slot.setFill(Color.ROSYBROWN);
             } else {
                 slot.setFill(Color.BEIGE);
@@ -154,6 +158,8 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
                 break;
             }
         }
+
+
     }
 
     public void emptyHotbar() {
@@ -162,5 +168,9 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
             toolSlot.set(i, null); // Set each slot to null
             slots.get(i).setFill(Color.BEIGE); // Reset the color of the slot
         }
+    }
+
+    public int getSelectedSlot() {
+        return selectedSlot;
     }
 }
