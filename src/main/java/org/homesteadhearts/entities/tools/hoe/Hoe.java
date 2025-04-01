@@ -1,38 +1,36 @@
 package org.homesteadhearts.entities.tools.hoe;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
-import javafx.scene.input.MouseButton;
 import org.homesteadhearts.entities.tools.Tool;
-import org.homesteadhearts.maps.TopLayerMap;
-
+import org.homesteadhearts.maps.tiles.TileManager;
 
 public class Hoe extends Tool {
+    private final TileManager tileManager;
 
-
-    public Hoe(String name, String description, int level, int inSlot, String material) {
+    public Hoe(String name, String description, int level, int inSlot, String material, TileManager tileManager) {
         super(name, description, level, inSlot, material);
-
+        this.tileManager = tileManager;
     }
 
     @Override
     public void setupEntities() {
-        HoeSprite hoeSprite = new HoeSprite(new Coordinate2D(0, 0), level);
-        addEntity(hoeSprite);
+        // Implementation here
+    }
+
+    @Override
+    public void useTool(Coordinate2D position) {
+        changeLand(position);
     }
 
     @Override
     public void useTool() {
-
-        // wat ik wil: if(toolSlot.get(selectedSlot) instanceof Hoe) { doe iets}
-//        toolSlot.get(selectedSlot).useTool();
-        changeLand();
-
+        // Default implementation when no position is provided
+        // Could use a default position or log a message that position is required
+        System.out.println("Hoe requires a position to be used");
     }
 
-    public void changeLand(){
-        System.out.println("Change Land");
-
+    public void changeLand(Coordinate2D position) {
+        tileManager.plowTile(position);
+        System.out.println("Changed Land at position: " + position);
     }
-
 }

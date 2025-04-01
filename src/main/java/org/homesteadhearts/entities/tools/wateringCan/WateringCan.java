@@ -5,25 +5,28 @@ import org.homesteadhearts.entities.tools.Tool;
 
 public class WateringCan extends Tool {
 
-
     public WateringCan(String name, String description, int level, int inSlot, String material) {
         super(name, description, level, inSlot, material);
-
     }
 
     @Override
-    public void setupEntities () {
-        WateringCanSprite wateringCanSprite = new WateringCanSprite(new Coordinate2D(15, 0), level);
-        addEntity(wateringCanSprite);
+    public void setupEntities() {
+        // Implementation here
     }
 
     @Override
-    public void useTool () {
+    public void useTool(Coordinate2D position) {
         waterPlants();
     }
-    public void waterPlants () {
-        System.out.println("Water Plants");
+
+    @Override
+    public void useTool() {
+        // Default implementation when no position is provided
+        waterPlants();
     }
 
-
+    public void waterPlants() {
+        // Your implementation here
+        System.out.println("Watering plants with " + getName());
+    }
 }

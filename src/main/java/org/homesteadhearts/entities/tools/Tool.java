@@ -3,7 +3,7 @@ package org.homesteadhearts.entities.tools;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 
-public class Tool extends DynamicCompositeEntity {
+public abstract class Tool extends DynamicCompositeEntity {
     protected String name;
     protected String description;
     protected int level;
@@ -21,7 +21,7 @@ public class Tool extends DynamicCompositeEntity {
 
     @Override
     protected void setupEntities() {
-
+        // Implementation here
     }
 
     public String getName() {
@@ -36,10 +36,13 @@ public class Tool extends DynamicCompositeEntity {
         return this.level;
     }
 
-    public String getMaterial() { return this.material;}
+    public String getMaterial() {
+        return this.material;
+    }
 
-public void useTool(){
+    public void useTool(Coordinate2D position) {
+        // Default implementation (if any)
+    }
 
-
-}
+    public abstract void useTool();
 }

@@ -37,6 +37,7 @@ public class TopLayerMap extends TileMap {
 
     @Override
     public void setupEntities() {
+        addEntity(TopTileType.EMPTY.getValue(), ClickableTile.class, "sprites/tiles/individual_tiles/empty.png");
         // Add farm land variants
         addEntity(TopTileType.FARM_LAND_1.getValue(), ClickableTile.class, "sprites/tiles/individual_tiles/farm-land-1.png");
         addEntity(TopTileType.FARM_LAND_2.getValue(), Tiles.class, "sprites/tiles/individual_tiles/farm-land-2.png");
