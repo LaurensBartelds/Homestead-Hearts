@@ -7,7 +7,7 @@ import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import javafx.scene.paint.Color;
 
-import org.homesteadhearts.entities.GUI.CoinsTest;
+import org.homesteadhearts.entities.GUI.coins.CoinsTest;
 import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.people.player.Player;

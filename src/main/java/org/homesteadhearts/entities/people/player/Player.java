@@ -5,7 +5,6 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
-import org.homesteadhearts.entities.GUI.coins.PlayerCoinAmountText;
 import org.homesteadhearts.maps.tiles.TileManager;
 
 import java.util.Set;
@@ -15,7 +14,6 @@ public class Player extends DynamicCompositeEntity implements KeyListener, Colli
     private TileManager tileManager;
     private boolean hasHoe = true; // For simplicity, player starts with a hoe
     private int selectedTool = 0; // 0 = no tool, 1 = hoe, etc.
-    private PlayerCoinAmountText playerCoinAmountText;
 
     public Player(Coordinate2D location, int playerCoinAmountText) {
         super(location );
