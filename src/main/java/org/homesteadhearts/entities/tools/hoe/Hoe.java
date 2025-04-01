@@ -2,13 +2,14 @@ package org.homesteadhearts.entities.tools.hoe;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import org.homesteadhearts.entities.tools.Tool;
+import org.homesteadhearts.maps.TopLayerMap;
 
 
 public class Hoe extends Tool {
 
 
-    public Hoe(String name, String description, int level, int inSlot) {
-        super(name, description, level, inSlot);
+    public Hoe(String name, String description, int level, int inSlot, String material) {
+        super(name, description, level, inSlot, material);
 
     }
 
@@ -25,7 +26,6 @@ public class Hoe extends Tool {
     }
 
     public void changeLand(){
-
     }
 
 }

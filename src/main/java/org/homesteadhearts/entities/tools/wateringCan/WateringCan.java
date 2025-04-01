@@ -6,8 +6,8 @@ import org.homesteadhearts.entities.tools.Tool;
 public class WateringCan extends Tool {
 
 
-    public WateringCan(String name, String description, int level, int inSlot) {
-        super(name, description, level, inSlot);
+    public WateringCan(String name, String description, int level, int inSlot, String material) {
+        super(name, description, level, inSlot, material);
 
     }
 
@@ -17,6 +17,12 @@ public class WateringCan extends Tool {
         addEntity(wateringCanSprite);
     }
 
-
+    @Override
+    public void useTool () {
+        waterPlants();
+    }
+    public void waterPlants () {
+        System.out.println("Water Plants");
+    }
 
 }

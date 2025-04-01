@@ -5,8 +5,8 @@ import org.homesteadhearts.entities.tools.Tool;
 
 public class Axe extends Tool {
 
-    public Axe(String name, String description, int level, int inSlot) {
-        super(name, description, level, inSlot);
+    public Axe(String name, String description, int level, int inSlot, String material) {
+        super(name, description, level, inSlot, material);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Axe extends Tool {
     }
 
     public void chopWood() {
-        // Logic to chop wood
+       System.out.println("Chop Wood");
     }
 
 
