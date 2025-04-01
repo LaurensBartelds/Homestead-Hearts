@@ -3,7 +3,6 @@ package org.homesteadhearts.scenes;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
-import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import javafx.scene.paint.Color;
@@ -12,10 +11,8 @@ import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.people.player.Player;
 import org.homesteadhearts.entities.crops.carrot.Carrot;
-import org.homesteadhearts.entities.tools.Tool;
-import org.homesteadhearts.entities.tools.hoe.Hoe;
 import org.homesteadhearts.maps.GroundLayerMap;
-import org.homesteadhearts.maps.TileManager;
+import org.homesteadhearts.maps.tiles.TileManager;
 import org.homesteadhearts.maps.TopLayerMap;
 
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer {

@@ -5,8 +5,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
-import org.homesteadhearts.maps.TileManager;
-import org.homesteadhearts.entities.tools.hoe.Hoe;
+import org.homesteadhearts.maps.tiles.TileManager;
 
 import java.util.Set;
 

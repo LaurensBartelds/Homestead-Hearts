@@ -1,4 +1,4 @@
-package org.homesteadhearts.maps;
+package org.homesteadhearts.maps.tiles;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import org.homesteadhearts.maps.GroundLayerMap;

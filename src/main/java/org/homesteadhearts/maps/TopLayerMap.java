@@ -1,6 +1,7 @@
 package org.homesteadhearts.maps;
 
 import com.github.hanyaeger.api.scenes.TileMap;
+import org.homesteadhearts.maps.tiles.Tiles;
 
 public class TopLayerMap extends TileMap {
 

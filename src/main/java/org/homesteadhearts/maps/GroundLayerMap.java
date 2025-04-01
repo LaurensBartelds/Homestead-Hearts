@@ -1,6 +1,8 @@
 package org.homesteadhearts.maps;
 
 import com.github.hanyaeger.api.scenes.TileMap;
+import org.homesteadhearts.maps.tiles.ClickableTile;
+import org.homesteadhearts.maps.tiles.Tiles;
 
 public class GroundLayerMap extends TileMap {
 
@@ -47,7 +49,7 @@ public class GroundLayerMap extends TileMap {
 
     @Override
     public void setupEntities() {
-        addEntity(TileType.GROUND.getValue(), Tiles.class, "sprites/tiles/individual_tiles/ground-1.png");
+        addEntity(TileType.GROUND.getValue(), ClickableTile.class, "sprites/tiles/individual_tiles/ground-1.png");
         addEntity(TileType.FLOWERS.getValue(), Tiles.class, "sprites/tiles/individual_tiles/flowers-1.png");
         addEntity(TileType.PATH_GRASS_RIGHT.getValue(), Tiles.class, "sprites/tiles/individual_tiles/path-grass-right.png");
         addEntity(TileType.PATH_GRASS_LEFT.getValue(), Tiles.class, "sprites/tiles/individual_tiles/path-grass-left.png");
