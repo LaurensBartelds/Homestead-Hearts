@@ -86,7 +86,7 @@ public class TopLayerMap extends TileMap {
                 {0, 21, 0, 0, 20, 19, 0, 0, 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 19, 0, 0, 23, 0, 0},
                 {0, 0, 19, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 19, 0, 0, 0, 0, 23, 0, 0, 21, 20, 0, 0, 22},
                 {23, 0, 0, 21, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 16, 16, 0, 0, 0, 23, 0, 0, 0, 0, 19, 0, 0, 21, 0, 0, 19, 0, 0, 20},
-                {0, 20, 0, 0, 22, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 17, 16, 0, 0, 19, 0, 0, 22, 0, 0, 0, 23, 0, 0, 21, 0, 0, 19, 0, 0},
+                {0, 20, 0, 0, 22, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 16, 16, 0, 0, 19, 0, 0, 22, 0, 0, 0, 23, 0, 0, 21, 0, 0, 19, 0, 0},
                 {0, 0, 23, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 16, 16, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 19, 0, 0, 20, 0, 0, 23, 0},
                 {19, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 19, 0, 0, 21, 0, 0},
                 {0, 21, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 0, 0, 20, 0, 0, 22, 0, 0},
@@ -104,14 +104,10 @@ public class TopLayerMap extends TileMap {
         };
     }
 
-    private void changeTile(final YaegerEntity entity, final YaegerEntity newIdentifier) {
-        for (var i = 0; i < getInstanceMap().length; i++) {
-            for (var j = 0; j < getInstanceMap()[i].length; j++) {
-                if (entity.equals(getInstanceMap()[i][j])) {
-                    getInstanceMap()[i][j] = newIdentifier;
-
-                    }
-            }
+    public void changeTile(final int x, final int y, final int newIdentifier) {
+        if (x < 0 || x >= getInstanceMap().length || y < 0 || y >= getInstanceMap()[x].length) {
+            throw new IndexOutOfBoundsException("Coordinates out of bounds");
         }
+        currentMap[x][y] = newIdentifier;
     }
 }
