@@ -4,6 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicRectangleEntity;
+import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
 import com.github.hanyaeger.api.userinput.MouseExitListener;
@@ -14,26 +15,38 @@ import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.crops.CropsInteractionText;
 import org.homesteadhearts.entities.tools.Tool;
 
-public class CarrotHitbox extends DynamicRectangleEntity implements Collider, MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
+import java.awt.*;
 
-    public CarrotHitbox(Coordinate2D initialPosition) {
+public class CarrotHitbox extends DynamicRectangleEntity implements Collider, MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
+int initialPositionX;
+int initialPositionY;
+private TextEntity interactionCarrotText;
+private Hotbar hotbar;
+
+    public CarrotHitbox(Coordinate2D initialPosition, Hotbar hotbar) {
         super(initialPosition);
+        this.initialPositionX = (int) initialPosition.getX();
+        this.initialPositionY = (int) initialPosition.getY();
         setWidth(50);
         setHeight(80);
         setFill(Color.TRANSPARENT);
+
     }
 
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
         System.out.println("MousePressed test carrot");
+        hotbar.useTool();
+
     }
     @Override
     public void onMouseEntered() {
         setFill(Color.RED);
         setCursor(Cursor.HAND);
-        CropsInteractionText cropsInteractionText = new CropsInteractionText(new Coordinate2D(0, 0), "Click to interact");
-        System.out.println(cropsInteractionText.getText() + " dit moet later op scherm komen" );
+
+//        CropsInteractionText cropsInteractionText = new CropsInteractionText(new Coordinate2D(getPositionX(),getPositionY()), "Click to interact");
+//        System.out.println(cropsInteractionText.getText() + " dit moet later op scherm komen!  " + MouseInfo.getPointerInfo().getLocation().getX() );
     }
 
     @Override
@@ -41,4 +54,5 @@ public class CarrotHitbox extends DynamicRectangleEntity implements Collider, Mo
         setFill(Color.TRANSPARENT);
         setCursor(Cursor.DEFAULT);
     }
+
 }

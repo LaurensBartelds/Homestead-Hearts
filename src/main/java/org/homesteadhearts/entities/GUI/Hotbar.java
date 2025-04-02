@@ -104,8 +104,12 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
             addToolsToToolbar();
         }
 //        if(pressedKey.contains(KeyCode.E)){
-//            toolSlot.get(selectedSlot).useTool();
+//           useTool();
 //        }
+    }
+
+    public void useTool() {
+                    toolSlot.get(selectedSlot).useTool();
     }
 
     public void addToolsToToolbar() {
