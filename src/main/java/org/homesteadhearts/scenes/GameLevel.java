@@ -41,24 +41,30 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         tileManager = new TileManager(groundLayerMap, topLayerMap);
 
 
-        Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth()/2 - 4 * 72, 30), 9);
+        Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
 
         addEntity(hotbar, true);
         // Add entities
         bunny = new Bunny(new Coordinate2D(1000, 1000));
         addEntity(bunny);
 
-        Carrot carrot = new Carrot(new Coordinate2D(1000, 1000), hotbar );
-        addEntity(carrot);
 
-        player = new Player(new Coordinate2D(1000, 1000),500);
+        Carrot carrot1 = new Carrot(new Coordinate2D(825, 1000), hotbar, 3);
+        Carrot carrot2 = new Carrot(new Coordinate2D(900, 1000), hotbar, 3);
+
+
+        addEntity(carrot1);
+        addEntity(carrot2);
+
+
+        player = new Player(new Coordinate2D(1000, 1000), 500);
         player.setTileManager(tileManager);
         addEntity(player);
 
         // Add the hotbar with stickyOnViewPort set to true
 
 
-        addEntity(new CoinsTest(new Coordinate2D(100, 30),"coins ", 50), true);
+        addEntity(new CoinsTest(new Coordinate2D(100, 30), "coins ", 50), true);
 
     }
 

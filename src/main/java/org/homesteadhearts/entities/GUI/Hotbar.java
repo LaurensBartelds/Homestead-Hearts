@@ -100,7 +100,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         if (pressedKey.contains(KeyCode.P)) {
             emptyHotbar();
         }
-        if(pressedKey.contains(KeyCode.T)){
+        if (pressedKey.contains(KeyCode.T)) {
             addToolsToToolbar();
         }
 //        if(pressedKey.contains(KeyCode.E)){
@@ -109,7 +109,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
     }
 
     public void useTool() {
-                    toolSlot.get(selectedSlot).useTool();
+        toolSlot.get(selectedSlot).useTool();
     }
 
     public void addToolsToToolbar() {
@@ -176,5 +176,12 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
 
     public static int getSelectedSlot() {
         return selectedSlot;
+    }
+
+    public void getToolsInSlot() {
+        for (int i = 0; i < toolSlot.size(); i++) {
+            toolSlot.get(i);
+        }
+
     }
 }

@@ -7,20 +7,21 @@ import org.homesteadhearts.entities.GUI.Hotbar;
 public class Carrot extends DynamicCompositeEntity {
 
     Hotbar hotbar;
-
-    public Carrot(Coordinate2D location, Hotbar hotbar) {
+    int carrotGrowthStage;
+    public Carrot(Coordinate2D location, Hotbar hotbar, int carrotGrowthStage) {
         super(location);
 
         this.hotbar = hotbar;
+        this.carrotGrowthStage = carrotGrowthStage;
     }
 
     @Override
     protected void setupEntities() {
-        CarrotSprite carrotSprite = new CarrotSprite(new Coordinate2D(200, 100));
+        CarrotSprite carrotSprite = new CarrotSprite(new Coordinate2D(200, 100), carrotGrowthStage);
         addEntity(carrotSprite);
 
 
-        CarrotHitbox carrotHitbox = new CarrotHitbox(new Coordinate2D(222, 105),hotbar);
+        CarrotHitbox carrotHitbox = new CarrotHitbox(new Coordinate2D(222, 140),hotbar);
         addEntity(carrotHitbox);
     }
 
