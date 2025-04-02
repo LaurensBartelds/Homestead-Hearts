@@ -1,5 +1,6 @@
 package org.homesteadhearts.maps;
 
+import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.scenes.TileMap;
 import org.homesteadhearts.maps.tiles.ClickableTile;
 import org.homesteadhearts.maps.tiles.Tiles;
@@ -37,6 +38,7 @@ public class TopLayerMap extends TileMap {
 
     @Override
     public void setupEntities() {
+        addEntity(TopTileType.EMPTY.getValue(), ClickableTile.class, "sprites/tiles/individual_tiles/empty.png");
         // Add farm land variants
         addEntity(TopTileType.FARM_LAND_1.getValue(), ClickableTile.class, "sprites/tiles/individual_tiles/farm-land-1.png");
         addEntity(TopTileType.FARM_LAND_2.getValue(), Tiles.class, "sprites/tiles/individual_tiles/farm-land-2.png");
@@ -102,13 +104,14 @@ public class TopLayerMap extends TileMap {
         };
     }
 
-    public void setTileValue(int x, int y, int value) {
-        if (currentMap != null && y >= 0 && y < currentMap.length && x >= 0 && x < currentMap[0].length) {
-            currentMap[y][x] = value;
-            redrawTileMap();
-        }
-    }
+    private void changeTile(final YaegerEntity entity, final YaegerEntity newIdentifier) {
+        for (var i = 0; i < getInstanceMap().length; i++) {
+            for (var j = 0; j < getInstanceMap()[i].length; j++) {
+                if (entity.equals(getInstanceMap()[i][j])) {
+                    getInstanceMap()[i][j] = newIdentifier;
 
-    private void redrawTileMap() {
+                    }
+            }
+        }
     }
 }

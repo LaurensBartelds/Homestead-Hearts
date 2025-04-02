@@ -22,10 +22,8 @@ public class TileManager {
         // Check if the position is valid within the map
         if (isValidTilePosition(tileX, tileY)) {
             // Clear top layer (remove grass/flowers)
-            topMap.setTileValue(tileX, tileY, TopLayerMap.TopTileType.EMPTY.getValue());
 
             // Set farmland in top layer
-            topMap.setTileValue(tileX, tileY, TopLayerMap.TopTileType.FARM_LAND_1.getValue());
 
         }
     }
