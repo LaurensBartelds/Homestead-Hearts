@@ -13,6 +13,7 @@ import org.homesteadhearts.entities.GUI.coins.CoinsTest;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.crops.Seed;
 import org.homesteadhearts.entities.crops.types.Carrot;
+import org.homesteadhearts.entities.crops.types.Corn;
 import org.homesteadhearts.entities.people.player.Player;
 import org.homesteadhearts.entities.tools.Tool;
 import org.homesteadhearts.maps.GroundLayerMap;
@@ -73,6 +74,9 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
             System.out.println("Tile clicked at: " + coordinate2D);
             var carrot = new Carrot(coordinate2D);
             addEntity(carrot);
+        } else if (Hotbar.getSelectedSlot() == 2) {
+            var corn = new Corn(coordinate2D);
+            addEntity(corn);
         }
     }
 }

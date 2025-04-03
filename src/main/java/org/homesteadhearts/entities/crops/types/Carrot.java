@@ -5,7 +5,7 @@ import org.homesteadhearts.entities.crops.Crops;
 
 public class Carrot extends Crops {
     private static final int STARTING_SPRITE_INDEX = 0;
-    private static final int MAX_GROWTH_STAGE = 6;
+    private static final int MAX_GROWTH_STAGE = 4;
 
     public Carrot(Coordinate2D location) {
         super(location);
