@@ -13,5 +13,6 @@ module Homestead.Hearts {
         opens sprites.farming;
         opens sprites.avatar;
         opens sprites.tiles.individual_tiles;
+
     exports org.homesteadhearts.maps.tiles;
 }
