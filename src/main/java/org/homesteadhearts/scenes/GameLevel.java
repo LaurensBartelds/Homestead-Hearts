@@ -8,6 +8,7 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import org.homesteadhearts.HomesteadHearts;
 import org.homesteadhearts.entities.gui.component.ChickenPoints;
 import org.homesteadhearts.entities.gui.component.Hotbar;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
@@ -25,8 +26,10 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
     private TopLayerMap topLayerMap;
     private Player player;
     private GroundLayerMap groundLayerMap;
+    private final HomesteadHearts homestead;
 
-    public GameLevel() {
+    public GameLevel(HomesteadHearts homestead) {
+        this.homestead = homestead;
     }
 
     @Override
@@ -57,7 +60,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         Chicken chicken3 = new Chicken(new Coordinate2D(1200, 1100), 90, points);
         addEntity(chicken1);addEntity(chicken2);addEntity(chicken3);
 
-        TopBar topbar = new TopBar(new Coordinate2D(0, 0), (int) getViewportWidth());
+        TopBar topbar = new TopBar(new Coordinate2D(0, 0), getViewportWidth(), getViewportHeight(), homestead);
         addEntity(topbar, true);
     }
 
