@@ -72,10 +72,11 @@ private Player player;
     public void changeDirection() {
         changeDirection(180D);
         bunnySprite.setAutoCycleRow((bunnySprite.getAutoCycleRow() + 1) % 2);
-        if(bunnySprite.getDirection()== 270d){ bunnySprite.setAuto(3, 100);}
-        else if(bunnySprite.getDirection()== 90d){ bunnySprite.setAuto(2, 100);}
-        else if(bunnySprite.getDirection()== 180d){ bunnySprite.setAuto(1, 100);}
-        else if(bunnySprite.getDirection()== 0d){ bunnySprite.setAuto(4, 500);}
+        if(bunnySprite.angleTo(player)>= 225 && bunnySprite.angleTo(player) < 315d){ bunnySprite.setAuto(3, 100);}
+        else if(bunnySprite.angleTo(player)>= 45d && bunnySprite.angleTo(player)< 135d ){ bunnySprite.setAuto(2, 100);}
+        else if(bunnySprite.angleTo(player)>= 135d &&bunnySprite.angleTo(player) <225  ){ bunnySprite.setAuto(1, 100);}
+        else if(bunnySprite.angleTo(player)>= 315d && bunnySprite.angleTo(player) < 45){ bunnySprite.setAuto(4, 500);
+        }
 
     }
 

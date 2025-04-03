@@ -6,13 +6,15 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 import org.homesteadhearts.entities.animals.Animal;
 import org.homesteadhearts.entities.animals.bunny.BunnySprite;
 
+import java.util.Random;
+
 public class Chicken extends Animal implements SceneBorderTouchingWatcher {
 
     private ChickenSprite chickenSprite;
 
-    public Chicken(Coordinate2D initialLocation) {
+    public Chicken(Coordinate2D initialLocation, int direction) {
         super(initialLocation);
-        setMotion(2, 90d);
+        setMotion(8, direction);
     }
 
 //    public int randomDirection() {
@@ -29,10 +31,19 @@ public class Chicken extends Animal implements SceneBorderTouchingWatcher {
     @Override
     public void notifyBoundaryTouching(SceneBorder sceneBorder) {
         switch (sceneBorder) {
-            case LEFT -> setMotion(2, 0d);
-            case RIGHT -> setAnchorLocationX(getSceneWidth() - getWidth()); // Reappear on the right side
-            case TOP -> setMotion(2, 270d);
-            case BOTTOM -> setMotion(2, 90d);
+            case LEFT -> {
+                setAnchorLocationX(getSceneWidth() - getWidth());
+                setAnchorLocationY(new Random().nextDouble() * (getSceneHeight() - getHeight())); // Random y-coordinate
+            }
+
+            case RIGHT -> {
+                setAnchorLocationX(0);
+                setAnchorLocationY(new Random().nextDouble() * (getSceneHeight() - getHeight())); // Random y-coordinate
+            }
+
+            case TOP ->                 setAnchorLocationY(getSceneHeight() - getHeight()); // Reappear at the bottom
+
+            case BOTTOM ->  setAnchorLocationY(0);
         }
     }
 }

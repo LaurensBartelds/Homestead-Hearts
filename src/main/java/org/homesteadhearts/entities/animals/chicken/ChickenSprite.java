@@ -7,7 +7,7 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 public class ChickenSprite extends DynamicSpriteEntity {
 
     public ChickenSprite(Coordinate2D location) {
-        super("sprites/animals/bunny_animations.png", location, new Size(75, 75), 5, 4);
+        super("sprites/animals/chicken_animation.png", location, new Size(75, 75), 5, 4);
         setAuto(4, 500);
     }
 

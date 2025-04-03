@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.GUI.coins.CoinsTest;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
+import org.homesteadhearts.entities.animals.chicken.Chicken;
 import org.homesteadhearts.entities.crops.Seed;
 import org.homesteadhearts.entities.crops.types.Carrot;
 import org.homesteadhearts.entities.crops.types.Corn;
@@ -23,6 +24,7 @@ import org.homesteadhearts.maps.tiles.TileManager;
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer, MouseButtonPressedListener {
     private TopLayerMap topLayerMap;
     private Bunny bunny;
+    private Chicken chicken;
     private Player player;
     private GroundLayerMap groundLayerMap;
 
@@ -51,7 +53,8 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
         bunny = new Bunny(new Coordinate2D(1000, 1000), player);
         addEntity(bunny);
-
+        chicken = new Chicken(new Coordinate2D(1200, 1200) , 270 );
+        addEntity(chicken);
 
         Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
