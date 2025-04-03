@@ -50,7 +50,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         player.setTileManager(tileManager);
         addEntity(player);
 
-        ChickenPoints points = new ChickenPoints(new Coordinate2D(50, 100), "points: ", 0);
+        ChickenPoints points = new ChickenPoints(new Coordinate2D(45, 80), "points: ", 0);
         addEntity(points, true);
 
 
@@ -66,7 +66,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
 
-        addEntity(new CoinsTest(new Coordinate2D(50, 50), "coins ", 50), true);
+        addEntity(new CoinsTest(new Coordinate2D(45, 50), "coins ", 50), true);
 
         IngameExitButton exitButton = new IngameExitButton(new Coordinate2D(getViewportWidth() - 85, 35));
         addEntity(exitButton, true);

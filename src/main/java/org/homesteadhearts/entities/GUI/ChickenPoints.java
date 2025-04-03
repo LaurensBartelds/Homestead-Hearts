@@ -15,7 +15,7 @@ public class ChickenPoints extends TextEntity {
         this.chickenPoints = chickenPoints;
         setChickenPoints(chickenPoints);
         setFill(Color.LIGHTGOLDENRODYELLOW);
-        setFont(Font.font("Roboto", FontWeight.BOLD, 30));
+        setFont(Font.font("Roboto", FontWeight.BOLD, 20));
     }
 
         public void setChickenPoints(int points) {
