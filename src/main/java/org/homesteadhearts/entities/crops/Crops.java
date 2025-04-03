@@ -5,6 +5,8 @@ import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
+import org.homesteadhearts.entities.GUI.Hotbar;
+import org.homesteadhearts.entities.GUI.coins.Coins;
 import org.homesteadhearts.entities.crops.hitbox.PlantHitbox;
 import org.homesteadhearts.entities.crops.sprites.PlantSprite;
 
@@ -67,7 +69,7 @@ public abstract class Crops extends DynamicCompositeEntity implements MouseButto
     public void harvest() {
         if (growthStage >= getMaxGrowthStage()) {
             System.out.println("Harvested " + getCropName());
-            // Implement harvesting logic here - could generate items, etc.
+            Coins.addMoney(50); // Use the new addMoney method
             remove();
         } else {
             System.out.println(getCropName() + " is not ready to harvest yet");
@@ -76,10 +78,10 @@ public abstract class Crops extends DynamicCompositeEntity implements MouseButto
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
-        if (button == MouseButton.PRIMARY) {
-            water();
-        } else if (button == MouseButton.SECONDARY) {
-            grow();
+        switch (Hotbar.getSelectedSlot()) {
+            case 0 -> water();
+            case 1 -> harvest();
+            case 2 -> grow();
         }
     }
 }

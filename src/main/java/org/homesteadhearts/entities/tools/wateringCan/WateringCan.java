@@ -13,7 +13,7 @@ public class WateringCan extends Tool {
 
     @Override
     public void setupEntities () {
-        WateringCanSprite wateringCanSprite = new WateringCanSprite(new Coordinate2D(15, 0), level);
+        WateringCanSprite wateringCanSprite = new WateringCanSprite(new Coordinate2D(0, 0), level);
         addEntity(wateringCanSprite);
     }
 

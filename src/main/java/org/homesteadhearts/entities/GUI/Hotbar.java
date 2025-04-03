@@ -15,6 +15,8 @@ import org.homesteadhearts.entities.crops.types.Pumpkin;
 import org.homesteadhearts.entities.crops.types.Strawberry;
 import org.homesteadhearts.entities.crops.types.Tomato;
 import org.homesteadhearts.entities.tools.Tool;
+import org.homesteadhearts.entities.tools.fertilizer.Fertilizer;
+import org.homesteadhearts.entities.tools.hoe.Hoe;
 import org.homesteadhearts.entities.tools.wateringCan.WateringCan;
 
 import java.util.ArrayList;
@@ -103,13 +105,15 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
     public void addItemsToHotbar() {
         // Add watering can
         itemsList.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1, "Wood"));
+        itemsList.add(new Hoe("Wooden hoe", "CAN till the soil", 1, 2, "Wood"));
+        itemsList.add(new Fertilizer("Wooden fertilizer", "CAN fertilize your plants", 1, 3, "Wood"));
 
         // Add seeds for different crop types
-        itemsList.add(new Seed("Carrot", Carrot.class, 0, 1));
-        itemsList.add(new Seed("Corn", Corn.class, 4, 2));
-        itemsList.add(new Seed("Pumpkin", Pumpkin.class, 1, 3));
-        itemsList.add(new Seed("Strawberry", Strawberry.class, 2, 4));
-        itemsList.add(new Seed("Tomato", Tomato.class, 3, 5));
+        itemsList.add(new Seed("Carrot", Carrot.class, 0, 4));
+        itemsList.add(new Seed("Corn", Corn.class, 4, 5));
+        itemsList.add(new Seed("Pumpkin", Pumpkin.class, 1, 6));
+        itemsList.add(new Seed("Strawberry", Strawberry.class, 2, 7));
+        itemsList.add(new Seed("Tomato", Tomato.class, 3, 8));
     }
 
     public void selectSlot(int index) {
@@ -141,12 +145,5 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
 
     public static int getSelectedSlot() {
         return selectedSlot;
-    }
-
-    public Tool getSelectedItem() {
-        if (selectedSlot < itemsList.size()) {
-            return itemsList.get(selectedSlot);
-        }
-        return null;
     }
 }

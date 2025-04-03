@@ -5,24 +5,14 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
-import org.homesteadhearts.entities.GUI.coins.CoinsTest;
-import org.homesteadhearts.maps.tiles.TileManager;
 
 import java.util.Set;
 
 public class Player extends DynamicCompositeEntity implements KeyListener, Collider {
     private PlayerSprite sprite;
-    private TileManager tileManager;
-    private boolean hasHoe = true; // For simplicity, player starts with a hoe
-    private int selectedTool = 0; // 0 = no tool, 1 = hoe, etc.
 
-    public Player(Coordinate2D location, int playerCoinAmountText) {
+    public Player(Coordinate2D location) {
         super(location );
-
-    }
-
-    public void setTileManager(TileManager tileManager) {
-        this.tileManager = tileManager;
     }
 
     @Override
@@ -49,22 +39,6 @@ public class Player extends DynamicCompositeEntity implements KeyListener, Colli
         } else if (pressedKeys.isEmpty()) {
             setMotion(0, 0);
         }
-
-        // Handle tile interaction
-        if (pressedKeys.contains(KeyCode.SPACE) && selectedTool == 1 && tileManager != null) {
-            // Plow the tile the player is standing on
-            tileManager.plowTile(getAnchorLocation());
-        }
-
-        // Tool selection
-        if (pressedKeys.contains(KeyCode.DIGIT1)) {
-            selectedTool = 1; // Select hoe
-        } else if (pressedKeys.contains(KeyCode.DIGIT0)) {
-            selectedTool = 0; // No tool
-        }
     }
 
-    public boolean canMove() {
-        return true;
-    }
 }
