@@ -5,14 +5,13 @@ import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
+import org.homesteadhearts.entities.crops.hitbox.PlantHitbox;
 import org.homesteadhearts.entities.crops.sprites.PlantSprite;
 
 public abstract class Crops extends DynamicCompositeEntity implements MouseButtonPressedListener {
     protected boolean isWatered = false;
     protected int growthStage = 0;
-    protected int maxGrowthStage;
     protected DynamicSpriteEntity cropSprite;
-    protected int startingSpriteIndex;
 
     public Crops(Coordinate2D location) {
         super(location);
@@ -22,6 +21,8 @@ public abstract class Crops extends DynamicCompositeEntity implements MouseButto
     protected void setupEntities() {
         cropSprite = createSprite();
         addEntity(cropSprite);
+        PlantHitbox hitbox = new PlantHitbox(new Coordinate2D(-50, -50));
+        addEntity(hitbox);
     }
 
     protected PlantSprite createSprite() {
