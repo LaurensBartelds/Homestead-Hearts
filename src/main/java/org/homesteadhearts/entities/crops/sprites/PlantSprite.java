@@ -7,7 +7,7 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 public class PlantSprite extends DynamicSpriteEntity {
 
     public PlantSprite(Coordinate2D initialLocation, int frameIndex) {
-        super("sprites/farming/crops.png", initialLocation, new Size(100, 100), 37, 6);
+        super("sprites/farming/crops.png", initialLocation, new Size(75, 75), 37, 6);
         setCurrentFrameIndex(frameIndex);
     }
 }

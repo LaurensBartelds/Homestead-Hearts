@@ -4,8 +4,8 @@ import com.github.hanyaeger.api.Coordinate2D;
 import org.homesteadhearts.entities.crops.Crops;
 
 public class Pumpkin extends Crops {
-    private static final int STARTING_SPRITE_INDEX = 8;
-    private static final int MAX_GROWTH_STAGE = 3;
+    private static final int STARTING_SPRITE_INDEX = 18;
+    private static final int MAX_GROWTH_STAGE = 4;
 
     public Pumpkin(Coordinate2D location) {
         super(location);

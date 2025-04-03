@@ -21,13 +21,12 @@ public abstract class Crops extends DynamicCompositeEntity implements MouseButto
     protected void setupEntities() {
         cropSprite = createSprite();
         addEntity(cropSprite);
-        PlantHitbox hitbox = new PlantHitbox(new Coordinate2D(-50, -50));
+        PlantHitbox hitbox = new PlantHitbox(new Coordinate2D(-37.5, -37.5));
         addEntity(hitbox);
     }
 
     protected PlantSprite createSprite() {
-        PlantSprite sprite = new PlantSprite(new Coordinate2D(-50, -50), getCurrentSpriteIndex());
-        return sprite;
+        return new PlantSprite(new Coordinate2D(-37.5, -37.5), getCurrentSpriteIndex());
     }
 
     protected int getCurrentSpriteIndex() {

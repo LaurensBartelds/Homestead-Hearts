@@ -8,8 +8,8 @@ public class PlantHitbox extends DynamicRectangleEntity {
 
     public PlantHitbox(Coordinate2D initialPosition) {
         super(initialPosition);
-        setWidth(100);
-        setHeight(100);
+        setWidth(75);
+        setHeight(75);
         setFill(Color.TRANSPARENT);
         setStrokeColor(Color.RED);
         setStrokeWidth(2);
