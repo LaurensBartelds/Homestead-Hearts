@@ -1,6 +1,5 @@
 package org.homesteadhearts.maps;
 
-import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.scenes.TileMap;
 import org.homesteadhearts.maps.tiles.ClickableTile;
 import org.homesteadhearts.maps.tiles.Tiles;
@@ -21,14 +20,14 @@ public class TopLayerMap extends TileMap {
         GRASS_6(24),
         GRASS_7(25);
 
-        private final int value;
+        private final int VALUE;
 
         TopTileType(int value) {
-            this.value = value;
+            this.VALUE = value;
         }
 
         public int getValue() {
-            return value;
+            return VALUE;
         }
     }
 
@@ -102,12 +101,5 @@ public class TopLayerMap extends TileMap {
                 {2, 2, 0, 22, 0, 0, 20, 0, 0, 23, 0, 0, 19, 0, 0, 21, 0, 0, 20, 0, 0, 22, 23, 0, 0, 19, 0, 0, 21, 0, 0, 22, 0, 0, 20, 0, 0, 19},
                 {2, 2, 19, 0, 0, 21, 0, 0, 22, 0, 0, 19, 0, 0, 23, 0, 0, 21, 0, 0, 20, 0, 0, 19, 0, 0, 22, 0, 0, 20, 0, 0, 23, 0, 0, 19, 0, 21}
         };
-    }
-
-    public void changeTile(final int x, final int y, final int newIdentifier) {
-        if (x < 0 || x >= getInstanceMap().length || y < 0 || y >= getInstanceMap()[x].length) {
-            throw new IndexOutOfBoundsException("Coordinates out of bounds");
-        }
-        currentMap[x][y] = newIdentifier;
     }
 }

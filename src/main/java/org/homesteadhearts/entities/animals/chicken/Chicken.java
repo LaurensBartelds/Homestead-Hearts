@@ -11,13 +11,13 @@ import org.homesteadhearts.entities.animals.Animal;
 import java.util.Random;
 
 public class Chicken extends Animal implements SceneBorderTouchingWatcher, MouseButtonPressedListener {
-    private final ChickenPoints chickenPoints;
+    private final ChickenPoints CHICKEN_POINTS;
     public Coordinate2D location;
 
     public Chicken(Coordinate2D location, int direction, ChickenPoints chickenPoints) {
         super(location);
         this.location = location;
-        this.chickenPoints = chickenPoints;
+        this.CHICKEN_POINTS = chickenPoints;
         setMotion(8, direction);
     }
 
@@ -52,7 +52,7 @@ public class Chicken extends Animal implements SceneBorderTouchingWatcher, Mouse
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
         if(mouseButton == MouseButton.PRIMARY) {
-            chickenPoints.addChickenPoints();
+            CHICKEN_POINTS.addChickenPoints();
             System.out.println("punt erbij, kippie");
         }
     }

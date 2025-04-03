@@ -12,18 +12,18 @@ import org.homesteadhearts.HomesteadHearts;
 
 public class StartButton extends SpriteEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
 
-    private final HomesteadHearts homestead;
+    private final HomesteadHearts HOMESTEAD;
 
-    public StartButton(Coordinate2D initialLocation, HomesteadHearts homestead) {
+    public StartButton(Coordinate2D initialLocation, HomesteadHearts HOMESTEAD) {
         super("sprites/ui/button_maker.png", initialLocation, new Size(200, 200), 5,4);
         setCurrentFrameIndex(0);
-        this.homestead = homestead;
+        this.HOMESTEAD = HOMESTEAD;
 
     }
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
-        homestead.setActiveScene(1);
+        HOMESTEAD.setActiveScene(1);
     }
 
     @Override

@@ -16,14 +16,4 @@ public class WateringCan extends Tool {
         WateringCanSprite wateringCanSprite = new WateringCanSprite(new Coordinate2D(0, 0), level);
         addEntity(wateringCanSprite);
     }
-
-    @Override
-    public void useTool () {
-        waterPlants();
-    }
-    public void waterPlants () {
-        System.out.println("Water Plants");
-    }
-
-
 }

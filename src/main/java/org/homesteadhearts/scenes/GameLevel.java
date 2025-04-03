@@ -26,10 +26,10 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
     private TopLayerMap topLayerMap;
     private Player player;
     private GroundLayerMap groundLayerMap;
-    private final HomesteadHearts homestead;
+    private final HomesteadHearts HOMESTEAD;
 
-    public GameLevel(HomesteadHearts homestead) {
-        this.homestead = homestead;
+    public GameLevel(HomesteadHearts HOMESTEAD) {
+        this.HOMESTEAD = HOMESTEAD;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         Chicken chicken3 = new Chicken(new Coordinate2D(1200, 1100), 90, points);
         addEntity(chicken1);addEntity(chicken2);addEntity(chicken3);
 
-        TopBar topbar = new TopBar(new Coordinate2D(0, 0), getViewportWidth(), getViewportHeight(), homestead);
+        TopBar topbar = new TopBar(new Coordinate2D(0, 0), getViewportWidth(), getViewportHeight(), HOMESTEAD);
         addEntity(topbar, true);
     }
 

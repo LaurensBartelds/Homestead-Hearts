@@ -23,23 +23,4 @@ public class Tool extends DynamicCompositeEntity {
     protected void setupEntities() {
 
     }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public int getLevel() {
-        return this.level;
-    }
-
-    public String getMaterial() { return this.material;}
-
-public void useTool(){
-
-
-}
 }

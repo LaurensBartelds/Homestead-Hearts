@@ -7,21 +7,21 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 
 public class LeaveGameButton extends SpriteEntity implements MouseButtonPressedListener{
-    private final IngameExitButton leaveGameButton;
-    private final GetBackButton getBackButton;
+    private final IngameExitButton LEAVE_GAME_BUTTON;
+    private final GetBackButton GET_BACK_BUTTON;
 
-    public LeaveGameButton(Coordinate2D initialLocation, IngameExitButton leaveGameButton, GetBackButton GetBackButton) {
+    public LeaveGameButton(Coordinate2D initialLocation, IngameExitButton LEAVE_GAME_BUTTON, GetBackButton GET_BACK_BUTTON) {
         super("sprites/ui/button_maker.png", initialLocation, new Size(80, 80), 5,4);
-        this.leaveGameButton = leaveGameButton;
-        this.getBackButton = GetBackButton;
+        this.LEAVE_GAME_BUTTON = LEAVE_GAME_BUTTON;
+        this.GET_BACK_BUTTON = GET_BACK_BUTTON;
         setCurrentFrameIndex(5);
     }
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        if (leaveGameButton != null) {
-            leaveGameButton.setButtonVisible(true); // Make exit button visible
-            getBackButton.setButtonVisible(true);
+        if (LEAVE_GAME_BUTTON != null) {
+            LEAVE_GAME_BUTTON.setButtonVisible(true); // Make exit button visible
+            GET_BACK_BUTTON.setButtonVisible(true);
             System.out.println("Exit button activated!");
         } else {
             System.out.println("Error: Exit button reference is null.");

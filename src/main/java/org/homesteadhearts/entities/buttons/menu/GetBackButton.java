@@ -7,11 +7,11 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 
 public class GetBackButton extends SpriteEntity implements MouseButtonPressedListener{
-    private final IngameExitButton leaveGameButton;
+    private final IngameExitButton LEAVE_GAME_BUTTON;
 
-    public GetBackButton(Coordinate2D initialLocation, IngameExitButton leaveGameButton) {
+    public GetBackButton(Coordinate2D initialLocation, IngameExitButton LEAVE_GAME_BUTTON) {
         super("sprites/ui/button_maker.png", initialLocation, new Size(300, 300), 4,4);
-        this.leaveGameButton = leaveGameButton;
+        this.LEAVE_GAME_BUTTON = LEAVE_GAME_BUTTON;
         setCurrentFrameIndex(7);
         setButtonVisible(false);
 
@@ -19,13 +19,12 @@ public class GetBackButton extends SpriteEntity implements MouseButtonPressedLis
 
 
     public void setButtonVisible(boolean visible) {
-        // Default: hidden
-        setVisible(visible); // Use Yaeger’s setVisible() method
+        setVisible(visible);
     }
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        if (leaveGameButton != null) {
-            leaveGameButton.setButtonVisible(false); // Make exit button visible
+        if (LEAVE_GAME_BUTTON != null) {
+            LEAVE_GAME_BUTTON.setButtonVisible(false); // Make exit button visible
             setButtonVisible(false);
             System.out.println("Exit button activated!");
         } else {

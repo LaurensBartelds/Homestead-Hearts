@@ -1,7 +1,6 @@
 package org.homesteadhearts.maps;
 
 import com.github.hanyaeger.api.scenes.TileMap;
-import org.homesteadhearts.maps.tiles.ClickableTile;
 import org.homesteadhearts.maps.tiles.Tiles;
 
 public class GroundLayerMap extends TileMap {
@@ -32,14 +31,14 @@ public class GroundLayerMap extends TileMap {
         GRASS_6(22),
         GRASS_7(23);
 
-        private final int value;
+        private final int VALUE;
 
         TileType(int value) {
-            this.value = value;
+            this.VALUE = value;
         }
 
         public int getValue() {
-            return value;
+            return VALUE;
         }
     }
 

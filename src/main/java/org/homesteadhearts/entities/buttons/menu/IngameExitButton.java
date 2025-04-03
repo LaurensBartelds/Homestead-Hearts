@@ -8,12 +8,12 @@ import javafx.scene.input.MouseButton;
 import org.homesteadhearts.HomesteadHearts;
 
 public class IngameExitButton extends SpriteEntity implements MouseButtonPressedListener {
-    private final HomesteadHearts homestead;
+    private final HomesteadHearts HOMESTEAD;
 
-    public IngameExitButton(Coordinate2D initialLocation, HomesteadHearts homestead) {
+    public IngameExitButton(Coordinate2D initialLocation, HomesteadHearts HOMESTEAD) {
         super("sprites/ui/button_maker.png", initialLocation, new Size(300, 300), 5,4);
         setButtonVisible(false);
-        this.homestead = homestead;
+        this.HOMESTEAD = HOMESTEAD;
         int currentFrame = 1;
         setCurrentFrameIndex(currentFrame);
     }
@@ -25,6 +25,6 @@ public class IngameExitButton extends SpriteEntity implements MouseButtonPressed
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        homestead.setActiveScene(2);
+        HOMESTEAD.setActiveScene(2);
     }
 }

@@ -13,10 +13,10 @@ import org.homesteadhearts.entities.buttons.menu.StartButton;
 
 public class TitleScene extends StaticScene {
 
-    private final HomesteadHearts homestead;
+    private final HomesteadHearts HOMESTEAD;
 
     public TitleScene(HomesteadHearts homesteadHearts) {
-        this.homestead = homesteadHearts;
+        this.HOMESTEAD = homesteadHearts;
     }
 
     public void setupScene() {
@@ -34,8 +34,8 @@ public class TitleScene extends StaticScene {
         homesteadText.setStrokeWidth(1);
         homesteadText.setStrokeColor(Color.BLACK);
         addEntity(homesteadText);
-        addEntity(new StartButton(new Coordinate2D(getWidth() / 2 - 200, getHeight() / 2 + 125), homestead));
-        addEntity(new ExitGameButton(new Coordinate2D(getWidth() / 2 + 5, getHeight() / 2 + 125), homestead));
+        addEntity(new StartButton(new Coordinate2D(getWidth() / 2 - 200, getHeight() / 2 + 125), HOMESTEAD));
+        addEntity(new ExitGameButton(new Coordinate2D(getWidth() / 2 + 5, getHeight() / 2 + 125), HOMESTEAD));
 
     }
 }

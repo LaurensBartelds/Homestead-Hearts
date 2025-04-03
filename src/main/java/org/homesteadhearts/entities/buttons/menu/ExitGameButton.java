@@ -12,20 +12,20 @@ import org.homesteadhearts.HomesteadHearts;
 
 public class ExitGameButton extends SpriteEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
 
-    private final HomesteadHearts homestead;
+    private final HomesteadHearts HOMESTEAD;
 
-    public ExitGameButton(Coordinate2D initialLocation, HomesteadHearts homestead) {
+    public ExitGameButton(Coordinate2D initialLocation, HomesteadHearts HOMESTEAD) {
         super("sprites/ui/button_maker.png", initialLocation, new Size(200, 200), 4, 4);
         setCurrentFrameIndex(5);
 
-        this.homestead = homestead;
+        this.HOMESTEAD = HOMESTEAD;
 
     }
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
 
-        homestead.quit();
+        HOMESTEAD.quit();
     }
 
     @Override

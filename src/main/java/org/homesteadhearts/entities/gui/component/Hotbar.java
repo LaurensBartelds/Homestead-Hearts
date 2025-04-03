@@ -25,15 +25,15 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonPressedListener {
-    private final List<RectangleEntity> hotbarSlots;
-    private final int numberOfSlots;
-    private final List<Tool> itemsList = new ArrayList<>();
+    private final List<RectangleEntity> HOTBAR_SLOTS;
+    private final int NUMBER_OF_SLOTS;
+    private final List<Tool> ITEMS_LIST = new ArrayList<>();
     static int selectedSlot = 0;
 
-    public Hotbar(Coordinate2D initialLocation, int numberOfSlots) {
+    public Hotbar(Coordinate2D initialLocation, int NUMBER_OF_SLOTS) {
         super(initialLocation);
-        this.numberOfSlots = numberOfSlots;
-        hotbarSlots = new ArrayList<>();
+        this.NUMBER_OF_SLOTS = NUMBER_OF_SLOTS;
+        HOTBAR_SLOTS = new ArrayList<>();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         double slotHeight = 75;
         double spacing = 5;
 
-        for (int i = 0; i < numberOfSlots; i++) {
+        for (int i = 0; i < NUMBER_OF_SLOTS; i++) {
             double xPosition = i * (slotWidth + spacing);
             Coordinate2D slotPosition = new Coordinate2D(xPosition, 0);
 
@@ -55,16 +55,16 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
                     setStrokeWidth(spacing);
                 }
             };
-            hotbarSlots.add(slot);
+            HOTBAR_SLOTS.add(slot);
             addEntity(slot);
         }
         addItemsToHotbar();
 
-        IntStream.range(0, Math.min(hotbarSlots.size(), itemsList.size()))
+        IntStream.range(0, Math.min(HOTBAR_SLOTS.size(), ITEMS_LIST.size()))
                 .forEach(i -> {
-                    Tool item = itemsList.get(i);
+                    Tool item = ITEMS_LIST.get(i);
                     if (item != null) {
-                        RectangleEntity slot = hotbarSlots.get(i);
+                        RectangleEntity slot = HOTBAR_SLOTS.get(i);
                         Coordinate2D slotLocation = slot.getAnchorLocation();
 
                         double offsetX = (slot.getWidth() - 75) / 2.0;
@@ -103,21 +103,21 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
     }
 
     public void addItemsToHotbar() {
-        itemsList.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1, "Wood"));
-        itemsList.add(new Hoe("Wooden hoe", "CAN till the soil", 1, 2, "Wood"));
-        itemsList.add(new Fertilizer("Wooden fertilizer", "CAN fertilize your plants", 1, 3, "Wood"));
+        ITEMS_LIST.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1, "Wood"));
+        ITEMS_LIST.add(new Hoe("Wooden hoe", "CAN till the soil", 1, 2, "Wood"));
+        ITEMS_LIST.add(new Fertilizer("Wooden fertilizer", "CAN fertilize your plants", 1, 3, "Wood"));
 
         // Add seeds for different crop types
-        itemsList.add(new Seed("Carrot", Carrot.class, 0, 4));
-        itemsList.add(new Seed("Corn", Corn.class, 4, 5));
-        itemsList.add(new Seed("Pumpkin", Pumpkin.class, 1, 6));
-        itemsList.add(new Seed("Strawberry", Strawberry.class, 2, 7));
-        itemsList.add(new Seed("Tomato", Tomato.class, 3, 8));
+        ITEMS_LIST.add(new Seed("Carrot", Carrot.class, 0, 4));
+        ITEMS_LIST.add(new Seed("Corn", Corn.class, 4, 5));
+        ITEMS_LIST.add(new Seed("Pumpkin", Pumpkin.class, 1, 6));
+        ITEMS_LIST.add(new Seed("Strawberry", Strawberry.class, 2, 7));
+        ITEMS_LIST.add(new Seed("Tomato", Tomato.class, 3, 8));
     }
 
     public void selectSlot(int index) {
-        for (int i = 0; i < hotbarSlots.size(); i++) {
-            RectangleEntity slot = hotbarSlots.get(i);
+        for (int i = 0; i < HOTBAR_SLOTS.size(); i++) {
+            RectangleEntity slot = HOTBAR_SLOTS.get(i);
             if (i == index) {
                 selectedSlot = i;
                 slot.setStrokeColor(Color.GOLD);
@@ -129,8 +129,8 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
-        for (int i = 0; i < hotbarSlots.size(); i++) {
-            RectangleEntity slot = hotbarSlots.get(i);
+        for (int i = 0; i < HOTBAR_SLOTS.size(); i++) {
+            RectangleEntity slot = HOTBAR_SLOTS.get(i);
             // Check if the mouse click is within the bounds of the slot.
             if (slot.getAnchorLocation().getX() <= coordinate2D.getX() &&
                     coordinate2D.getX() <= slot.getAnchorLocation().getX() + slot.getWidth() &&
