@@ -6,7 +6,6 @@ import org.homesteadhearts.entities.crops.Crops;
 public class Pumpkin extends Crops {
     private static final int STARTING_SPRITE_INDEX = 8;
     private static final int MAX_GROWTH_STAGE = 3;
-    private static final int SEED_SPRITE_INDEX = 3;
 
     public Pumpkin(Coordinate2D location) {
         super(location);
@@ -25,10 +24,5 @@ public class Pumpkin extends Crops {
     @Override
     protected String getCropName() {
         return "Pumpkin";
-    }
-
-    @Override
-    protected int getSeedSpriteIndex() {
-        return SEED_SPRITE_INDEX;
     }
 }

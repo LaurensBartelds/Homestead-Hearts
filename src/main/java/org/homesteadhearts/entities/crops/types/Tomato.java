@@ -6,7 +6,6 @@ import org.homesteadhearts.entities.crops.Crops;
 public class Tomato extends Crops {
     private static final int STARTING_SPRITE_INDEX = 16;
     private static final int MAX_GROWTH_STAGE = 3;
-    private static final int SEED_SPRITE_INDEX = 6;
 
     public Tomato(Coordinate2D location) {
         super(location);
@@ -27,8 +26,4 @@ public class Tomato extends Crops {
         return "Tomato";
     }
 
-    @Override
-    protected int getSeedSpriteIndex() {
-        return SEED_SPRITE_INDEX;
-    }
 }

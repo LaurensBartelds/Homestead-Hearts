@@ -6,7 +6,6 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 import org.homesteadhearts.entities.crops.sprites.PlantSprite;
-import org.homesteadhearts.entities.crops.sprites.SeedBagSprite;
 
 public abstract class Crops extends DynamicCompositeEntity implements MouseButtonPressedListener {
     protected boolean isWatered = false;
@@ -30,11 +29,6 @@ public abstract class Crops extends DynamicCompositeEntity implements MouseButto
         return sprite;
     }
 
-    protected SeedBagSprite createSeedBagSprite() {
-        SeedBagSprite sprite = new SeedBagSprite(new Coordinate2D(-37.5, -37.5), getCurrentSpriteIndex());
-        return sprite;
-    }
-
     protected int getCurrentSpriteIndex() {
             return getStartingSpriteIndex() + growthStage; // Plant stages
     }
@@ -42,7 +36,6 @@ public abstract class Crops extends DynamicCompositeEntity implements MouseButto
     protected abstract int getStartingSpriteIndex();
     protected abstract int getMaxGrowthStage();
     protected abstract String getCropName();
-    protected abstract int getSeedSpriteIndex();
 
     public void water() {
         if (isWatered) {
@@ -54,10 +47,14 @@ public abstract class Crops extends DynamicCompositeEntity implements MouseButto
     }
 
     public void grow() {
-        if (isWatered && growthStage <= maxGrowthStage) {
+        if (isWatered && growthStage <= getMaxGrowthStage()) {
             growthStage++;
             updateSpriteFrame();
             System.out.println(getCropName() + " has grown to stage " + growthStage);
+        } else if (growthStage >= getMaxGrowthStage()) {
+            System.out.println(getCropName() + " is fully grown and ready to harvest");
+        } else {
+            System.out.println(getCropName() + " is not watered yet");
         }
     }
 
