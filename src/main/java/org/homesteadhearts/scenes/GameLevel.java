@@ -23,6 +23,7 @@ import java.lang.reflect.Constructor;
 
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer, MouseButtonPressedListener {
     private TopLayerMap topLayerMap;
+    private Bunny bunny;
     private Player player;
     private GroundLayerMap groundLayerMap;
     private Hotbar hotbar;
@@ -45,14 +46,17 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         TileManager tileManager = new TileManager(groundLayerMap, topLayerMap);
 
         // Add entities
-        Bunny bunny = new Bunny(new Coordinate2D(1000, 1000));
-        addEntity(bunny);
-
         player = new Player(new Coordinate2D(1000, 1000), 500);
         player.setTileManager(tileManager);
         addEntity(player);
 
         hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
+
+        bunny = new Bunny(new Coordinate2D(1000, 1000), player);
+        addEntity(bunny);
+
+
+        Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
 
         addEntity(new CoinsTest(new Coordinate2D(100, 30), "coins ", 50), true);
