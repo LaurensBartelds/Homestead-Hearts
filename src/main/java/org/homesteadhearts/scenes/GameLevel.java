@@ -8,11 +8,14 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import org.homesteadhearts.HomesteadHearts;
 import org.homesteadhearts.entities.GUI.ChickenPoints;
 import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.GUI.coins.Coins;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.animals.chicken.Chicken;
+import org.homesteadhearts.entities.buttons.menu.GetBackButton;
+import org.homesteadhearts.entities.buttons.menu.LeaveGameButton;
 import org.homesteadhearts.entities.crops.types.*;
 import org.homesteadhearts.entities.buttons.menu.IngameExitButton;
 
@@ -26,8 +29,11 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
     private TopLayerMap topLayerMap;
     private Player player;
     private GroundLayerMap groundLayerMap;
+    private final HomesteadHearts homestead;
 
-    public GameLevel() {
+
+    public GameLevel(HomesteadHearts homestead) {
+        this.homestead = homestead;
     }
 
     @Override
@@ -58,15 +64,23 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         Chicken chicken3 = new Chicken(new Coordinate2D(1200, 1100), 90, points);
 
 
-        addEntity(chicken1);addEntity(chicken2);addEntity(chicken3);
+        addEntity(chicken1);
+        addEntity(chicken2);
+        addEntity(chicken3);
 
         Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
 
         addEntity(new Coins(new Coordinate2D(45, 50), "coins ", 0), true);
 
-        IngameExitButton exitButton = new IngameExitButton(new Coordinate2D(getViewportWidth() - 85, 35));
+        IngameExitButton exitButton = new IngameExitButton(new Coordinate2D(getViewportWidth() / 2+ 25, getViewportHeight() / 2), homestead);
         addEntity(exitButton, true);
+        GetBackButton getBackButton = new GetBackButton(new Coordinate2D(getViewportWidth() / 2 - 325, getViewportHeight() / 2), exitButton);
+        addEntity(getBackButton, true);
+
+        LeaveGameButton leaveGameButton= new LeaveGameButton(new Coordinate2D(getViewportWidth() - 100, 50), exitButton, getBackButton);
+        addEntity(leaveGameButton, true);
+
     }
 
     @Override

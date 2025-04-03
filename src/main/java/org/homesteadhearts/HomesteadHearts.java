@@ -2,6 +2,7 @@ package org.homesteadhearts;
 
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
+import org.homesteadhearts.scenes.EndScreen;
 import org.homesteadhearts.scenes.GameLevel;
 import org.homesteadhearts.scenes.TitleScene;
 
@@ -23,6 +24,7 @@ public class HomesteadHearts extends YaegerGame {
     @Override
     public void setupScenes() {
         addScene(0, new TitleScene(this)); // Add the TitleScene to the game
-        addScene(1, new GameLevel()); // Add the GameLevel to the game
+        addScene(1, new GameLevel(this)); // Add the GameLevel to the game
+        addScene(2, new EndScreen(this));
     }
 }
