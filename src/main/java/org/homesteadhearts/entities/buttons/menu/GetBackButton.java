@@ -4,11 +4,9 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
-import com.github.hanyaeger.api.userinput.MouseEnterListener;
-import com.github.hanyaeger.api.userinput.MouseExitListener;
 import javafx.scene.input.MouseButton;
 
-public class GetBackButton extends SpriteEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
+public class GetBackButton extends SpriteEntity implements MouseButtonPressedListener{
     private final IngameExitButton leaveGameButton;
 
     public GetBackButton(Coordinate2D initialLocation, IngameExitButton leaveGameButton) {
@@ -35,13 +33,5 @@ public class GetBackButton extends SpriteEntity implements MouseButtonPressedLis
         }
     }
 
-    @Override
-    public void onMouseEntered() {
 
-    }
-
-    @Override
-    public void onMouseExited() {
-
-    }
 }
