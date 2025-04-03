@@ -9,11 +9,12 @@ import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 
+import org.homesteadhearts.entities.animals.Animal;
 import org.homesteadhearts.entities.people.player.Player;
 
 import java.util.Random;
 
-public class Bunny extends DynamicCompositeEntity implements SceneBorderCrossingWatcher, Collider, TimerContainer {
+public class Bunny extends Animal implements SceneBorderCrossingWatcher, Collider, TimerContainer {
 private Player player;
     public Bunny(Coordinate2D location, Player player) {
         super(location);

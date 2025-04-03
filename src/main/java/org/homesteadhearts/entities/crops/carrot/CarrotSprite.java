@@ -11,6 +11,7 @@ public class CarrotSprite extends DynamicSpriteEntity {
        this.carrotGrowthStage = carrotGrowthStage;
 
        setCurrentFrameIndex(carrotGrowthStage);
+
         }
 
         // 0 = seedpack, 1= seeds, 2 = carrot ontkiem, 3 = carrot kiem, 4 = carrot growing, 5 = carrot full, 6 = full grown carrot

@@ -8,7 +8,7 @@ public class Carrot extends DynamicCompositeEntity {
 
     Hotbar hotbar;
     int carrotGrowthStage;
-    public Carrot(Coordinate2D location, Hotbar hotbar, int carrotGrowthStage) {
+    public Carrot(Coordinate2D location, Hotbar hotbar) {
         super(location);
 
         this.hotbar = hotbar;
@@ -21,8 +21,8 @@ public class Carrot extends DynamicCompositeEntity {
         addEntity(carrotSprite);
 
 
-        CarrotHitbox carrotHitbox = new CarrotHitbox(new Coordinate2D(222, 140),hotbar);
-        addEntity(carrotHitbox);
+       // CarrotHitbox carrotHitbox = new CarrotHitbox(new Coordinate2D(222, 140),hotbar);
+       // addEntity(carrotHitbox);
     }
 
     public void growCrops(){

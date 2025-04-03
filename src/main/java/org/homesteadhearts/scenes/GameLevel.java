@@ -44,10 +44,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         TileManager tileManager = new TileManager(groundLayerMap, topLayerMap);
 
         // Add entities
-        Bunny bunny = new Bunny(new Coordinate2D(1000, 1000));
-        addEntity(bunny);
-
-        player = new Player(new Coordinate2D(1000, 1000), 500);
+           player = new Player(new Coordinate2D(1000, 1000), 500);
         player.setTileManager(tileManager);
         addEntity(player);
 
