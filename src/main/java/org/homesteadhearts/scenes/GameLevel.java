@@ -3,7 +3,6 @@ package org.homesteadhearts.scenes;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
-import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
@@ -12,7 +11,6 @@ import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.GUI.coins.CoinsTest;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
-import org.homesteadhearts.entities.crops.carrot.Carrot;
 import org.homesteadhearts.entities.crops.seed.Seed;
 import org.homesteadhearts.entities.people.player.Player;
 import org.homesteadhearts.maps.GroundLayerMap;
@@ -44,15 +42,14 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         tileManager = new TileManager(groundLayerMap, topLayerMap);
 
         // Add entities
-        bunny = new Bunny(new Coordinate2D(1000, 1000));
-        addEntity(bunny);
-
-        Carrot carrot = new Carrot(new Coordinate2D(1000, 1000));
-        addEntity(carrot);
-
         player = new Player(new Coordinate2D(1000, 1000), 500);
         player.setTileManager(tileManager);
         addEntity(player);
+
+
+        bunny = new Bunny(new Coordinate2D(1000, 1000), player);
+        addEntity(bunny);
+
 
         Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);

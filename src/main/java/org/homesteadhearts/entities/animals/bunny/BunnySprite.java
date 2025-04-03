@@ -8,12 +8,19 @@ public class BunnySprite extends DynamicSpriteEntity {
 
     public BunnySprite(Coordinate2D location) {
         super("sprites/animals/bunny_animations.png", location, new Size(75, 75), 5, 4);
-        setAutoCycleRow(4);
-        setAutoCycle(500);
+        setAuto(4, 500);
     }
 
     public void setAuto(int row, int duration) {
         super.setAutoCycleRow(row);
         super.setAutoCycle(duration);
+    }
+
+    public void setAutoCycleRow(int row) {
+        super.setAutoCycleRow(row);
+    }
+
+    public int getAutoCycleRow() {
+        return super.getAutoCycleRow();
     }
 }
