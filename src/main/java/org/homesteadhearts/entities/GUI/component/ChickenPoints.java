@@ -1,4 +1,4 @@
-package org.homesteadhearts.entities.GUI;
+package org.homesteadhearts.entities.gui.component;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
@@ -26,10 +26,5 @@ public class ChickenPoints extends TextEntity {
             chickenPoints++;
             setChickenPoints(chickenPoints);
         }
-
-        public int getChickenPoints() {
-            return chickenPoints;
-        }
-
     }
 

@@ -5,13 +5,13 @@ import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
-import org.homesteadhearts.entities.GUI.ChickenPoints;
+import org.homesteadhearts.entities.gui.component.ChickenPoints;
 import org.homesteadhearts.entities.animals.Animal;
 
 import java.util.Random;
 
 public class Chicken extends Animal implements SceneBorderTouchingWatcher, MouseButtonPressedListener {
-    private ChickenPoints chickenPoints;
+    private final ChickenPoints chickenPoints;
     public Coordinate2D location;
 
     public Chicken(Coordinate2D location, int direction, ChickenPoints chickenPoints) {
@@ -20,11 +20,6 @@ public class Chicken extends Animal implements SceneBorderTouchingWatcher, Mouse
         this.chickenPoints = chickenPoints;
         setMotion(8, direction);
     }
-
-//    public int randomDirection() {
-//        randomDirection = (int) (Math.random() * 360);
-//        return randomDirection;
-//    }
 
     @Override
     protected void setupEntities() {
