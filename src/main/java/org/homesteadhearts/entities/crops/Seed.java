@@ -1,41 +1,31 @@
 package org.homesteadhearts.entities.crops;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
-import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
-import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
-import javafx.scene.input.MouseButton;
-import org.homesteadhearts.entities.crops.sprites.PlantSprite;
+import org.homesteadhearts.entities.crops.sprites.SeedBagSprite;
+import org.homesteadhearts.entities.tools.Tool;
 
-public class Seed extends DynamicCompositeEntity implements MouseButtonPressedListener {
-    private static final int STARTING_FRAME_INDEX = 1;
-    private static final int ENDING_FRAME_INDEX = 4;
+public class Seed extends Tool {
+    private final Class<? extends Crops> cropType;
+    private final int spriteIndex;
 
-    private DynamicSpriteEntity seedSprite;
-    private int currentFrameIndex = STARTING_FRAME_INDEX;
-
-    public Seed(Coordinate2D location) {
-        super(location);
+    public Seed(String cropName, Class<? extends Crops> cropType, int spriteIndex, int slotNumber) {
+        super(cropName + " Seeds", "Plant " + cropName + " crops", 1, slotNumber, "Seeds");
+        this.cropType = cropType;
+        this.spriteIndex = spriteIndex;
     }
 
     @Override
-    public void setupEntities() {
-        seedSprite = new PlantSprite(new Coordinate2D(0, 0), currentFrameIndex);
-        seedSprite.setCurrentFrameIndex(currentFrameIndex);
-        addEntity(seedSprite);
+    protected void setupEntities() {
+        SeedBagSprite seedBagSprite = new SeedBagSprite(new Coordinate2D(0, 0), spriteIndex);
+        addEntity(seedBagSprite);
     }
 
-    public void grow() {
-        if (currentFrameIndex <= ENDING_FRAME_INDEX) {
-            currentFrameIndex++;
-        }
-        seedSprite.setCurrentFrameIndex(currentFrameIndex);
+    public Class<? extends Crops> getCropType() {
+        return cropType;
     }
-
 
     @Override
-    public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
-        System.out.println("Seed clicked at: " + coordinate2D);
-        grow();
+    public void useTool() {
+        System.out.println("Ready to plant " + name);
     }
 }

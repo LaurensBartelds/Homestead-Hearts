@@ -11,19 +11,21 @@ import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.GUI.coins.CoinsTest;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
+import org.homesteadhearts.entities.crops.Crops;
 import org.homesteadhearts.entities.crops.Seed;
-import org.homesteadhearts.entities.crops.types.Carrot;
-import org.homesteadhearts.entities.crops.types.Corn;
 import org.homesteadhearts.entities.people.player.Player;
 import org.homesteadhearts.entities.tools.Tool;
 import org.homesteadhearts.maps.GroundLayerMap;
 import org.homesteadhearts.maps.TopLayerMap;
 import org.homesteadhearts.maps.tiles.TileManager;
 
+import java.lang.reflect.Constructor;
+
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer, MouseButtonPressedListener {
     private TopLayerMap topLayerMap;
     private Player player;
     private GroundLayerMap groundLayerMap;
+    private Hotbar hotbar;
 
     public GameLevel() {
     }
@@ -50,11 +52,10 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         player.setTileManager(tileManager);
         addEntity(player);
 
-        Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
+        hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
 
         addEntity(new CoinsTest(new Coordinate2D(100, 30), "coins ", 50), true);
-
     }
 
     @Override
@@ -70,13 +71,18 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
-        if (Hotbar.getSelectedSlot() == 1) {
-            System.out.println("Tile clicked at: " + coordinate2D);
-            var carrot = new Carrot(coordinate2D);
-            addEntity(carrot);
-        } else if (Hotbar.getSelectedSlot() == 2) {
-            var corn = new Corn(coordinate2D);
-            addEntity(corn);
+        Tool selectedItem = hotbar.getSelectedItem();
+
+        if (selectedItem instanceof Seed seed) {
+            try {
+                Class<? extends Crops> cropClass = seed.getCropType();
+                Constructor<? extends Crops> constructor = cropClass.getConstructor(Coordinate2D.class);
+                Crops crop = constructor.newInstance(coordinate2D);
+                addEntity(crop);
+                System.out.println("Planted " + cropClass.getSimpleName());
+            } catch (Exception e) {
+                System.out.println("Failed to plant crop: " + e.getMessage());
+            }
         }
     }
 }

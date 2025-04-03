@@ -12,9 +12,10 @@ import org.homesteadhearts.entities.crops.Seed;
 import org.homesteadhearts.entities.crops.types.Carrot;
 import org.homesteadhearts.entities.crops.types.Corn;
 import org.homesteadhearts.entities.crops.types.Pumpkin;
+import org.homesteadhearts.entities.crops.types.Strawberry;
+import org.homesteadhearts.entities.crops.types.Tomato;
 import org.homesteadhearts.entities.tools.Tool;
 import org.homesteadhearts.entities.tools.wateringCan.WateringCan;
-import org.homesteadhearts.scenes.GameLevel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,17 +100,16 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         }
     }
 
-    public void useSelectedItem() {
-        if (selectedSlot < itemsList.size() && itemsList.get(selectedSlot) != null) {
-            itemsList.get(selectedSlot).useTool();
-        }
-    }
-
     public void addItemsToHotbar() {
         // Add watering can
         itemsList.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1, "Wood"));
 
         // Add seeds for different crop types
+        itemsList.add(new Seed("Carrot", Carrot.class, 0, 1));
+        itemsList.add(new Seed("Corn", Corn.class, 4, 2));
+        itemsList.add(new Seed("Pumpkin", Pumpkin.class, 1, 3));
+        itemsList.add(new Seed("Strawberry", Strawberry.class, 2, 4));
+        itemsList.add(new Seed("Tomato", Tomato.class, 3, 5));
     }
 
     public void selectSlot(int index) {
@@ -139,21 +139,8 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         }
     }
 
-    public void emptyHotbar() {
-        for (int i = 0; i < numberOfSlots; i++) {
-            if (i < itemsList.size()) {
-                itemsList.set(i, null); // Set each slot to null
-            }
-            hotbarSlots.get(i).setFill(Color.BEIGE); // Reset the color of the slot
-        }
-    }
-
     public static int getSelectedSlot() {
         return selectedSlot;
-    }
-
-    public List<Tool> getItemsInHotbar() {
-        return itemsList;
     }
 
     public Tool getSelectedItem() {
