@@ -1,4 +1,4 @@
-package org.homesteadhearts.entities.GUI;
+package org.homesteadhearts.entities.gui.component;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.CompositeEntity;
@@ -51,6 +51,8 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
                     setWidth(slotWidth);
                     setHeight(slotHeight);
                     setFill(Color.BEIGE);
+                    setStrokeColor(Color.GOLDENROD);
+                    setStrokeWidth(spacing);
                 }
             };
             hotbarSlots.add(slot);
@@ -70,8 +72,6 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
 
                         item.setAnchorLocation(new Coordinate2D(slotLocation.getX() + offsetX, slotLocation.getY() + offsetY));
                         addEntity(item);
-
-                        // If it's a seed, set the game level reference
                     }
                 });
 
@@ -103,7 +103,6 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
     }
 
     public void addItemsToHotbar() {
-        // Add watering can
         itemsList.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1, "Wood"));
         itemsList.add(new Hoe("Wooden hoe", "CAN till the soil", 1, 2, "Wood"));
         itemsList.add(new Fertilizer("Wooden fertilizer", "CAN fertilize your plants", 1, 3, "Wood"));
@@ -121,9 +120,9 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
             RectangleEntity slot = hotbarSlots.get(i);
             if (i == index) {
                 selectedSlot = i;
-                slot.setFill(Color.ROSYBROWN);
+                slot.setStrokeColor(Color.GOLD);
             } else {
-                slot.setFill(Color.BEIGE);
+                slot.setStrokeColor(Color.GOLDENROD);
             }
         }
     }

@@ -1,4 +1,4 @@
-package org.homesteadhearts.entities.GUI.coins;
+package org.homesteadhearts.entities.gui.coins;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;

@@ -5,8 +5,8 @@ import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
-import org.homesteadhearts.entities.GUI.Hotbar;
-import org.homesteadhearts.entities.GUI.coins.Coins;
+import org.homesteadhearts.entities.gui.component.Hotbar;
+import org.homesteadhearts.entities.gui.coins.Coins;
 import org.homesteadhearts.entities.crops.hitbox.PlantHitbox;
 import org.homesteadhearts.entities.crops.sprites.PlantSprite;
 
