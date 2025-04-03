@@ -5,6 +5,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
 import javafx.scene.paint.Color;
+import javafx.scene.text.FontWeight;
 import org.homesteadhearts.HomesteadHearts;
 import org.homesteadhearts.entities.buttons.menu.ExitGameButton;
 import org.homesteadhearts.entities.buttons.menu.StartButton;
@@ -29,10 +30,12 @@ public class TitleScene extends StaticScene {
         );
         homesteadText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         homesteadText.setFill(Color.LIGHTPINK);
-        homesteadText.setFont(javafx.scene.text.Font.font("Roboto", javafx.scene.text.FontWeight.SEMI_BOLD, 50));
+        homesteadText.setFont(javafx.scene.text.Font.font("Roboto", FontWeight.EXTRA_BOLD, 80));
+        homesteadText.setStrokeWidth(1);
+        homesteadText.setStrokeColor(Color.BLACK);
         addEntity(homesteadText);
-        addEntity(new StartButton(new Coordinate2D(getWidth() / 2 - 75, getHeight() / 2 + 100), homestead));
-        addEntity(new ExitGameButton(new Coordinate2D(getWidth() / 2 - 72.5, getHeight() / 2 + 150), homestead));
+        addEntity(new StartButton(new Coordinate2D(getWidth() / 2 - 200, getHeight() / 2 + 125), homestead));
+        addEntity(new ExitGameButton(new Coordinate2D(getWidth() / 2 + 5, getHeight() / 2 + 125), homestead));
 
     }
 }
