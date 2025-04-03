@@ -9,6 +9,7 @@ module Homestead.Hearts {
         exports org.homesteadhearts.maps;
 
         opens sprites.animals;
+        opens sprites.ui;
         opens sprites.tiles;
         opens sprites.farming;
         opens sprites.avatar;

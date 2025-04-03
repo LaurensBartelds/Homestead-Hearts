@@ -8,11 +8,16 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import org.homesteadhearts.entities.GUI.ChickenPoints;
 import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.GUI.coins.CoinsTest;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.animals.chicken.Chicken;
 import org.homesteadhearts.entities.crops.types.*;
+import org.homesteadhearts.entities.buttons.menu.IngameExitButton;
+
+import org.homesteadhearts.entities.crops.types.Carrot;
+import org.homesteadhearts.entities.crops.types.Corn;
 import org.homesteadhearts.entities.people.player.Player;
 import org.homesteadhearts.maps.GroundLayerMap;
 import org.homesteadhearts.maps.TopLayerMap;
@@ -45,15 +50,26 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         player.setTileManager(tileManager);
         addEntity(player);
 
+        ChickenPoints points = new ChickenPoints(new Coordinate2D(50, 100), "points: ", 0);
+        addEntity(points, true);
+
+
         Bunny bunny = new Bunny(new Coordinate2D(1000, 1000), player);
         addEntity(bunny);
-        Chicken chicken = new Chicken(new Coordinate2D(1200, 1200), 270);
-        addEntity(chicken);
+        Chicken chicken1 = new Chicken(new Coordinate2D(1200, 300), 90, points);
+        Chicken chicken2 = new Chicken(new Coordinate2D(1200, 700), 270, points);
+        Chicken chicken3 = new Chicken(new Coordinate2D(1200, 1100), 90, points);
+
+
+        addEntity(chicken1);addEntity(chicken2);addEntity(chicken3);
 
         Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
 
-        addEntity(new CoinsTest(new Coordinate2D(100, 30), "coins ", 50), true);
+        addEntity(new CoinsTest(new Coordinate2D(50, 50), "coins ", 50), true);
+
+        IngameExitButton exitButton = new IngameExitButton(new Coordinate2D(getViewportWidth() - 85, 35));
+        addEntity(exitButton, true);
     }
 
     @Override

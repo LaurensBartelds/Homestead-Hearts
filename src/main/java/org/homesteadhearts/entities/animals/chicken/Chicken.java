@@ -3,17 +3,21 @@ package org.homesteadhearts.entities.animals.chicken;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
+import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
+import javafx.scene.input.MouseButton;
+import org.homesteadhearts.entities.GUI.ChickenPoints;
 import org.homesteadhearts.entities.animals.Animal;
-import org.homesteadhearts.entities.animals.bunny.BunnySprite;
 
 import java.util.Random;
 
-public class Chicken extends Animal implements SceneBorderTouchingWatcher {
+public class Chicken extends Animal implements SceneBorderTouchingWatcher, MouseButtonPressedListener {
+    private ChickenPoints chickenPoints;
+    public Coordinate2D location;
 
-    private ChickenSprite chickenSprite;
-
-    public Chicken(Coordinate2D initialLocation, int direction) {
-        super(initialLocation);
+    public Chicken(Coordinate2D location, int direction, ChickenPoints chickenPoints) {
+        super(location);
+        this.location = location;
+        this.chickenPoints = chickenPoints;
         setMotion(8, direction);
     }
 
@@ -24,8 +28,11 @@ public class Chicken extends Animal implements SceneBorderTouchingWatcher {
 
     @Override
     protected void setupEntities() {
-        chickenSprite = new ChickenSprite(new Coordinate2D(30, 0));
+        ChickenSprite chickenSprite = new ChickenSprite(new Coordinate2D(30, 0));
         addEntity(chickenSprite);
+
+        ChickenHitbox chickenHitbox = new ChickenHitbox(new Coordinate2D(43, 25));
+        addEntity(chickenHitbox);
     }
 
     @Override
@@ -44,6 +51,14 @@ public class Chicken extends Animal implements SceneBorderTouchingWatcher {
             case TOP ->                 setAnchorLocationY(getSceneHeight() - getHeight()); // Reappear at the bottom
 
             case BOTTOM ->  setAnchorLocationY(0);
+        }
+    }
+
+    @Override
+    public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
+        if(mouseButton == MouseButton.PRIMARY) {
+            chickenPoints.addChickenPoints();
+            System.out.println("punt erbij, kippie");
         }
     }
 }
