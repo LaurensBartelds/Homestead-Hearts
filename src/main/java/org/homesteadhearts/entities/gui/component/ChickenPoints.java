@@ -8,7 +8,7 @@ import javafx.scene.text.FontWeight;
 
 
 public class ChickenPoints extends TextEntity {
-    int chickenPoints;
+    public int chickenPoints;
 
     public ChickenPoints(Coordinate2D initialLocation, String chickenText, int chickenPoints) {
         super(initialLocation, chickenText);
