@@ -8,16 +8,15 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
-import org.homesteadhearts.entities.GUI.ChickenPoints;
-import org.homesteadhearts.entities.GUI.Hotbar;
-import org.homesteadhearts.entities.GUI.coins.Coins;
+import org.homesteadhearts.entities.gui.component.ChickenPoints;
+import org.homesteadhearts.entities.gui.component.Hotbar;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.animals.chicken.Chicken;
 import org.homesteadhearts.entities.crops.types.*;
-import org.homesteadhearts.entities.buttons.menu.IngameExitButton;
 
 import org.homesteadhearts.entities.crops.types.Carrot;
 import org.homesteadhearts.entities.crops.types.Corn;
+import org.homesteadhearts.entities.gui.component.TopBar;
 import org.homesteadhearts.entities.people.player.Player;
 import org.homesteadhearts.maps.GroundLayerMap;
 import org.homesteadhearts.maps.TopLayerMap;
@@ -56,17 +55,10 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         Chicken chicken1 = new Chicken(new Coordinate2D(1200, 300), 90, points);
         Chicken chicken2 = new Chicken(new Coordinate2D(1200, 700), 270, points);
         Chicken chicken3 = new Chicken(new Coordinate2D(1200, 1100), 90, points);
-
-
         addEntity(chicken1);addEntity(chicken2);addEntity(chicken3);
 
-        Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
-        addEntity(hotbar, true);
-
-        addEntity(new Coins(new Coordinate2D(45, 50), "coins ", 0), true);
-
-        IngameExitButton exitButton = new IngameExitButton(new Coordinate2D(getViewportWidth() - 85, 35));
-        addEntity(exitButton, true);
+        TopBar topbar = new TopBar(new Coordinate2D(0, 0), (int) getViewportWidth());
+        addEntity(topbar, true);
     }
 
     @Override
@@ -85,23 +77,23 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         System.out.println("Tile clicked at: " + coordinate2D);
 
         switch (Hotbar.getSelectedSlot()) {
-            case 2 -> {
+            case 3 -> {
                 var carrot = new Carrot(coordinate2D);
                 addEntity(carrot);
             }
-            case 3 -> {
+            case 4 -> {
                 var corn = new Corn(coordinate2D);
                 addEntity(corn);
             }
-            case 4 -> {
+            case 5 -> {
                 var tomato = new Tomato(coordinate2D);
                 addEntity(tomato);
             }
-            case 5 -> {
+            case 6 -> {
                 var strawberry = new Strawberry(coordinate2D);
                 addEntity(strawberry);
             }
-            case 6 -> {
+            case 7 -> {
                 var pumpkin = new Pumpkin(coordinate2D);
                 addEntity(pumpkin);
             }

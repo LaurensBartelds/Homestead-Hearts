@@ -22,8 +22,9 @@ public class Carrot extends Crops {
     }
 
     @Override
-    public String getCropName() {
+    protected String getCropName() {
         return "Carrot";
     }
+
 
 }
