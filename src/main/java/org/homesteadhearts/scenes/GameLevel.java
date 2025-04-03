@@ -3,6 +3,7 @@ package org.homesteadhearts.scenes;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
+import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.scenes.ScrollableDynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
@@ -11,6 +12,7 @@ import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.GUI.coins.CoinsTest;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
+import org.homesteadhearts.entities.crops.carrot.Carrot;
 import org.homesteadhearts.entities.crops.seed.Seed;
 import org.homesteadhearts.entities.people.player.Player;
 import org.homesteadhearts.maps.GroundLayerMap;
@@ -19,8 +21,10 @@ import org.homesteadhearts.maps.tiles.TileManager;
 
 public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, TileMapContainer, MouseButtonPressedListener {
     private TopLayerMap topLayerMap;
+    private Bunny bunny;
     private Player player;
     private GroundLayerMap groundLayerMap;
+    private TileManager tileManager;
 
     public GameLevel() {
     }
@@ -37,11 +41,14 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         // Create maps first
         groundLayerMap = new GroundLayerMap();
         topLayerMap = new TopLayerMap();
-        TileManager tileManager = new TileManager(groundLayerMap, topLayerMap);
+        tileManager = new TileManager(groundLayerMap, topLayerMap);
 
         // Add entities
-        Bunny bunny = new Bunny(new Coordinate2D(1000, 1000));
+        bunny = new Bunny(new Coordinate2D(1000, 1000));
         addEntity(bunny);
+
+        Carrot carrot = new Carrot(new Coordinate2D(1000, 1000));
+        addEntity(carrot);
 
         player = new Player(new Coordinate2D(1000, 1000), 500);
         player.setTileManager(tileManager);
