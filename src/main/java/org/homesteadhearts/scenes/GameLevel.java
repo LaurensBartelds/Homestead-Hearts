@@ -11,8 +11,9 @@ import javafx.scene.paint.Color;
 import org.homesteadhearts.entities.GUI.Hotbar;
 import org.homesteadhearts.entities.GUI.coins.CoinsTest;
 import org.homesteadhearts.entities.animals.bunny.Bunny;
-import org.homesteadhearts.entities.crops.seed.Seed;
+import org.homesteadhearts.entities.crops.Seed;
 import org.homesteadhearts.entities.people.player.Player;
+import org.homesteadhearts.entities.tools.Tool;
 import org.homesteadhearts.maps.GroundLayerMap;
 import org.homesteadhearts.maps.TopLayerMap;
 import org.homesteadhearts.maps.tiles.TileManager;
@@ -21,6 +22,8 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
     private TopLayerMap topLayerMap;
     private Player player;
     private GroundLayerMap groundLayerMap;
+    private Hotbar hotbar;
+    private Coordinate2D mouseCoordinates = new Coordinate2D(0, 0);
 
     public GameLevel() {
     }
@@ -47,11 +50,10 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
         player.setTileManager(tileManager);
         addEntity(player);
 
-        Hotbar hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
+        hotbar = new Hotbar(new Coordinate2D(getViewportWidth() / 2 - 4 * 72, 30), 9);
         addEntity(hotbar, true);
 
         addEntity(new CoinsTest(new Coordinate2D(100, 30), "coins ", 50), true);
-
     }
 
     @Override
@@ -67,10 +69,19 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
-        if (Hotbar.getSelectedSlot() == 1) {
-            System.out.println("Tile clicked at: " + coordinate2D);
-            var seed = new Seed(coordinate2D);
-            addEntity(seed);
+        // Store the mouse coordinates for use with tools
+        mouseCoordinates = coordinate2D;
+
+        // When mouse is clicked, use the currently selected item
+        if (button == MouseButton.PRIMARY && hotbar != null) {
+            Tool selectedItem = hotbar.getSelectedItem();
+            if (selectedItem != null) {
+                selectedItem.useTool();
+            }
         }
+    }
+
+    public Coordinate2D getMouseCoordinates() {
+        return mouseCoordinates;
     }
 }

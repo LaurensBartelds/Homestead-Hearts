@@ -8,10 +8,13 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import org.homesteadhearts.entities.crops.Seed;
+import org.homesteadhearts.entities.crops.types.Carrot;
+import org.homesteadhearts.entities.crops.types.Corn;
+import org.homesteadhearts.entities.crops.types.Pumpkin;
 import org.homesteadhearts.entities.tools.Tool;
-import org.homesteadhearts.entities.tools.axe.Axe;
-import org.homesteadhearts.entities.tools.hoe.Hoe;
 import org.homesteadhearts.entities.tools.wateringCan.WateringCan;
+import org.homesteadhearts.scenes.GameLevel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,23 +22,22 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonPressedListener {
-    private final List<RectangleEntity> slots;
+    private final List<RectangleEntity> hotbarSlots;
     private final int numberOfSlots;
-    private final List<Tool> toolSlot = new ArrayList<>();
-    boolean testingTrue = true;
-    static int selectedSlot = 1;
+    private final List<Tool> itemsList = new ArrayList<>();
+    static int selectedSlot = 0;
 
     public Hotbar(Coordinate2D initialLocation, int numberOfSlots) {
         super(initialLocation);
         this.numberOfSlots = numberOfSlots;
-        slots = new ArrayList<>();
+        hotbarSlots = new ArrayList<>();
     }
 
     @Override
     public void setupEntities() {
-        double slotWidth = 70;
-        double slotHeight = 70;
-        double spacing = 2;
+        double slotWidth = 75;
+        double slotHeight = 75;
+        double spacing = 5;
 
         for (int i = 0; i < numberOfSlots; i++) {
             double xPosition = i * (slotWidth + spacing);
@@ -48,32 +50,30 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
                     setFill(Color.BEIGE);
                 }
             };
-            slots.add(slot);
+            hotbarSlots.add(slot);
             addEntity(slot);
         }
-        addToolsToToolbar(); // test hotbar
+        addItemsToHotbar();
 
-        IntStream.range(0, Math.min(slots.size(), toolSlot.size()))
+        IntStream.range(0, Math.min(hotbarSlots.size(), itemsList.size()))
                 .forEach(i -> {
-                    Tool tool = toolSlot.get(i);
-                    if (tool != null) {
-                        RectangleEntity slot = slots.get(i);
+                    Tool item = itemsList.get(i);
+                    if (item != null) {
+                        RectangleEntity slot = hotbarSlots.get(i);
                         Coordinate2D slotLocation = slot.getAnchorLocation();
 
-                        // Compute offsets (assuming your sprite is 75x75)
                         double offsetX = (slot.getWidth() - 75) / 2.0;
                         double offsetY = (slot.getHeight() - 75) / 2.0;
 
-                        // Set the tool's position relative to its slot
-                        tool.setAnchorLocation(new Coordinate2D(
-                                slotLocation.getX() + offsetX,
-                                slotLocation.getY() + offsetY
-                        ));
+                        item.setAnchorLocation(new Coordinate2D(slotLocation.getX() + offsetX, slotLocation.getY() + offsetY));
+                        addEntity(item);
 
-                        // Add the tool entity to the scene so its sprite is rendered.
-                        addEntity(tool);
+                        // If it's a seed, set the game level reference
                     }
                 });
+
+        // Select the first slot by default
+        selectSlot(0);
     }
 
     @Override
@@ -97,39 +97,24 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         } else if (pressedKey.contains(KeyCode.DIGIT9)) {
             selectSlot(8);
         }
-        if (pressedKey.contains(KeyCode.P)) {
-            emptyHotbar();
-        }
-        if (pressedKey.contains(KeyCode.T)) {
-            addToolsToToolbar();
-        }
-//        if(pressedKey.contains(KeyCode.E)){
-//           useTool();
-//        }
     }
 
-    public void useTool() {
-        toolSlot.get(selectedSlot).useTool();
+    public void useSelectedItem() {
+        if (selectedSlot < itemsList.size() && itemsList.get(selectedSlot) != null) {
+            itemsList.get(selectedSlot).useTool();
+        }
     }
 
-    public void addToolsToToolbar() {
-        if (testingTrue) {
-            toolSlot.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1, "Wood"));
-            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 1, 2, "Wood"));
-            toolSlot.add(new Axe("Wooden Axe", "Axe description", 1, 3, "Wood"));
-            toolSlot.add(new WateringCan("Metal wateringcan", "CAN water your plants", 2, 4, "Metal"));
-            toolSlot.add(new Hoe("Metal Hoe", "Hoe description", 2, 5, "Metal"));
-            toolSlot.add(new Axe("Metal Axe", "Axe description", 2, 6, "Metal"));
-            toolSlot.add(new WateringCan("Iron wateringcan", "CAN water your plants", 3, 7, "Iron"));
-            toolSlot.add(new Hoe("Iron Hoe", "Hoe description", 3, 8, "Iron"));
-            toolSlot.add(new Axe("Iron Axe", "Axe description", 3, 9, "Iron"));
-// prima, alleen nog sprites dus aanpassen
-        }
+    public void addItemsToHotbar() {
+        // Add watering can
+        itemsList.add(new WateringCan("Wooden wateringcan", "CAN water your plants", 1, 1, "Wood"));
+
+        // Add seeds for different crop types
     }
 
     public void selectSlot(int index) {
-        for (int i = 0; i < slots.size(); i++) {
-            RectangleEntity slot = slots.get(i);
+        for (int i = 0; i < hotbarSlots.size(); i++) {
+            RectangleEntity slot = hotbarSlots.get(i);
             if (i == index) {
                 selectedSlot = i;
                 slot.setFill(Color.ROSYBROWN);
@@ -139,38 +124,27 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         }
     }
 
-
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D) {
-        for (int i = 0; i < slots.size(); i++) {
-            RectangleEntity slot = slots.get(i);
+        for (int i = 0; i < hotbarSlots.size(); i++) {
+            RectangleEntity slot = hotbarSlots.get(i);
             // Check if the mouse click is within the bounds of the slot.
             if (slot.getAnchorLocation().getX() <= coordinate2D.getX() &&
                     coordinate2D.getX() <= slot.getAnchorLocation().getX() + slot.getWidth() &&
                     slot.getAnchorLocation().getY() <= coordinate2D.getY() &&
                     coordinate2D.getY() <= slot.getAnchorLocation().getY() + slot.getHeight()) {
-                selectSlot(i);
-                System.out.println("Slot " + (i + 1) + " selected.");
-
-                // It’s a good idea to check we have a tool at this slot.
-                if (i < toolSlot.size() && toolSlot.get(i) != null) {
-                    Tool tool = toolSlot.get(i);
-                    System.out.println("Tool name: " + tool.getName());
-                } else {
-                    System.out.println("No tool assigned to this slot.");
-                }
+                selectSlot(i); // Select the clicked slot
                 break;
             }
         }
-
-
     }
 
     public void emptyHotbar() {
         for (int i = 0; i < numberOfSlots; i++) {
-
-            toolSlot.set(i, null); // Set each slot to null
-            slots.get(i).setFill(Color.BEIGE); // Reset the color of the slot
+            if (i < itemsList.size()) {
+                itemsList.set(i, null); // Set each slot to null
+            }
+            hotbarSlots.get(i).setFill(Color.BEIGE); // Reset the color of the slot
         }
     }
 
@@ -178,10 +152,14 @@ public class Hotbar extends CompositeEntity implements KeyListener, MouseButtonP
         return selectedSlot;
     }
 
-    public void getToolsInSlot() {
-        for (int i = 0; i < toolSlot.size(); i++) {
-            toolSlot.get(i);
-        }
+    public List<Tool> getItemsInHotbar() {
+        return itemsList;
+    }
 
+    public Tool getSelectedItem() {
+        if (selectedSlot < itemsList.size()) {
+            return itemsList.get(selectedSlot);
+        }
+        return null;
     }
 }
