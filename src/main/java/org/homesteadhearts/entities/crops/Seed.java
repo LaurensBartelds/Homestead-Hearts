@@ -1,14 +1,15 @@
-package org.homesteadhearts.entities.crops.seed;
+package org.homesteadhearts.entities.crops;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
+import org.homesteadhearts.entities.crops.sprites.PlantSprite;
 
 public class Seed extends DynamicCompositeEntity implements MouseButtonPressedListener {
     private static final int STARTING_FRAME_INDEX = 1;
-    private static final int ENDING_FRAME_INDEX = 6;
+    private static final int ENDING_FRAME_INDEX = 4;
 
     private DynamicSpriteEntity seedSprite;
     private int currentFrameIndex = STARTING_FRAME_INDEX;
@@ -19,7 +20,7 @@ public class Seed extends DynamicCompositeEntity implements MouseButtonPressedLi
 
     @Override
     public void setupEntities() {
-        seedSprite = new SeedSprite(new Coordinate2D(-50, -50));
+        seedSprite = new PlantSprite(new Coordinate2D(0, 0), currentFrameIndex);
         seedSprite.setCurrentFrameIndex(currentFrameIndex);
         addEntity(seedSprite);
     }
