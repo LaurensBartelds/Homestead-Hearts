@@ -11,7 +11,5 @@ public class PlantHitbox extends DynamicRectangleEntity {
         setWidth(75);
         setHeight(75);
         setFill(Color.TRANSPARENT);
-        setStrokeColor(Color.RED);
-        setStrokeWidth(2);
     }
 }

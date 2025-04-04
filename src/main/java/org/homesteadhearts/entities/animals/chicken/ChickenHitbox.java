@@ -12,6 +12,5 @@ public class ChickenHitbox extends DynamicRectangleEntity implements Collider {
         setWidth(50);
         setHeight(50);
         setFill(Color.TRANSPARENT);
-        setStrokeColor(Color.RED);
     }
 }
