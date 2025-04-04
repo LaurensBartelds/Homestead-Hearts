@@ -65,7 +65,7 @@ public class GameLevel extends ScrollableDynamicScene implements UpdateExposer, 
     }
 
     @Override
-    public void explicitUpdate(final long timestamp) {
+    public void explicitUpdate(final long TIMESTAMP) {
         var playerLocation = player.getAnchorLocation();
         setScrollPosition(playerLocation);
     }

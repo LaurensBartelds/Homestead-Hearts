@@ -67,17 +67,17 @@ private Player player;
     }
 
     private static class BunnyTimer extends Timer {
-        private final Bunny bunny;
+        private final Bunny BUNNY;
 
         protected BunnyTimer(Bunny bunny) {
             super(new Random().nextInt(500) + 200);
-            this.bunny = bunny;
+            this.BUNNY = bunny;
         }
 
         @Override
         public void onAnimationUpdate(long timestamp) {
             if (new Random().nextInt(6) < 1) {
-                bunny.followPlayer();
+                BUNNY.followPlayer();
             }
         }
     }
