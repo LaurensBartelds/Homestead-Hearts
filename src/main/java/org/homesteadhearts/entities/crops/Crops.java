@@ -1,16 +1,21 @@
 package org.homesteadhearts.entities.crops;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.Collided;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
+import org.homesteadhearts.entities.animals.bunny.Bunny;
 import org.homesteadhearts.entities.gui.component.Hotbar;
 import org.homesteadhearts.entities.gui.coins.Coins;
 import org.homesteadhearts.entities.crops.hitbox.PlantHitbox;
 import org.homesteadhearts.entities.crops.sprites.PlantSprite;
 
-public abstract class Crops extends DynamicCompositeEntity implements MouseButtonPressedListener {
+import java.util.List;
+
+public abstract class Crops extends DynamicCompositeEntity implements MouseButtonPressedListener, Collided {
     protected boolean isWatered = false;
     protected int growthStage = 0;
     protected DynamicSpriteEntity cropSprite;
@@ -69,7 +74,7 @@ public abstract class Crops extends DynamicCompositeEntity implements MouseButto
     public void harvest() {
         if (growthStage >= getMaxGrowthStage()) {
             System.out.println("Harvested " + getCropName());
-            Coins.addMoney(50); // Use the new addMoney method
+            Coins.addMoney(50);
             remove();
         } else {
             System.out.println(getCropName() + " is not ready to harvest yet");
@@ -84,4 +89,15 @@ public abstract class Crops extends DynamicCompositeEntity implements MouseButto
             case 2 -> grow();
         }
     }
+
+    @Override
+    public void onCollision(List<Collider> collidingObjects) {
+        for (Collider collider : collidingObjects) {
+            if (collider instanceof Bunny) {
+                Coins.addMoney(-25);
+                remove();
+            }
+        }
+    }
 }
+

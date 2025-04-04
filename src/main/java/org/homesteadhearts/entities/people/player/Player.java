@@ -1,14 +1,17 @@
 package org.homesteadhearts.entities.people.player;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
+import org.homesteadhearts.entities.crops.hitbox.PlantHitbox;
 
+import java.util.List;
 import java.util.Set;
 
-public class Player extends DynamicCompositeEntity implements KeyListener, Collider {
+public class Player extends DynamicCompositeEntity implements KeyListener, Collided {
     private PlayerSprite sprite;
 
     public Player(Coordinate2D location) {
@@ -41,4 +44,12 @@ public class Player extends DynamicCompositeEntity implements KeyListener, Colli
         }
     }
 
-}
+        @Override
+        public void onCollision(List<Collider> collidingObjects) {
+            for (Collider collider : collidingObjects) {
+                if (collider instanceof PlantHitbox) {
+                    setSpeed(0);
+                    }
+                }
+            }
+        }

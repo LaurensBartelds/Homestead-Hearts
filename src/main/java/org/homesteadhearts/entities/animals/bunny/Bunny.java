@@ -7,7 +7,6 @@ import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
-
 import org.homesteadhearts.entities.animals.Animal;
 import org.homesteadhearts.entities.people.player.Player;
 
@@ -55,7 +54,6 @@ private Player player;
         else if(bunnySprite.angleTo(player)>= 135d &&bunnySprite.angleTo(player) <225  ){ bunnySprite.setAuto(1, 100);}
         else if(bunnySprite.angleTo(player)>= 315d && bunnySprite.angleTo(player) < 45){ bunnySprite.setAuto(4, 500);
         }
-
     }
 
     public void followPlayer(){

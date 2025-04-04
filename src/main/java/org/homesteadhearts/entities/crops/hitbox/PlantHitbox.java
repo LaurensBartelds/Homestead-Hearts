@@ -13,3 +13,4 @@ public class PlantHitbox extends DynamicRectangleEntity {
         setFill(Color.TRANSPARENT);
     }
 }
+
